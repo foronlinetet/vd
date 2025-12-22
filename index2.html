@@ -1,0 +1,1378 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>黄河控股 Golden River | 掌握全球财富流向</title>
+	<link rel="icon" href="https://rawcdn.githack.com/foronlinetet/video/71a6752951b38bf047a5a7fceaadd4ef553cd07f/grlogo.svg" type="image/svg+xml">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=Orbitron:wght@400;700&family=Cinzel:wght=700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- 核心架構 --- */
+        html, body { 
+            margin: 0; 
+            padding: 0; 
+            width: 100%; 
+            font-family: 'Noto Sans SC', sans-serif; 
+            background-color: #020617; 
+            color: #e2e8f0; 
+            overflow-x: hidden; 
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #020617; }
+        ::-webkit-scrollbar-thumb { background: #10b981; border-radius: 3px; }
+        
+        /* 頁面切換特效 */
+        .view-section { display: none; opacity: 0; min-height: 100vh; padding-top: 80px; transition: opacity 0.5s ease-in-out; }
+        .view-section.active { display: block; opacity: 1; }
+
+        /* 玻璃擬態 */
+        .glass-panel { background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3); transition: all 0.4s ease; }
+        .glass-panel:hover { border-color: rgba(16, 185, 129, 0.5); box-shadow: 0 0 40px rgba(16, 185, 129, 0.2); transform: translateY(-5px); }
+
+        /* 文字特效 */
+        .text-gradient { background: linear-gradient(135deg, #4ade80 0%, #2dd4bf 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        /* 動態長條圖動畫 */
+        .bar-fill { height: 100%; width: 0; transition: width 6s cubic-bezier(0.22, 1, 0.36, 1); }
+
+        /* 按鈕特效 - 鏡面閃光特效 */
+        .btn-glow { position: relative; overflow: hidden; z-index: 1; transition: all 0.3s; }
+        .btn-glow::before {
+            content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
+            background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0) 100%);
+            transform: skewX(-25deg); animation: btn-shine 2s infinite linear; 
+        }
+        @keyframes btn-shine { 0% { left: -100%; } 100% { left: 150%; } }
+        .btn-glow:hover { transform: scale(1.05); box-shadow: 0 0 35px rgba(16, 185, 129, 0.7); }
+        
+        /* 表格 (增強版) */
+        .tech-table { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 0.9rem; }
+        .tech-table th { background: rgba(16, 185, 129, 0.15); color: #34d399; padding: 16px; text-align: left; border-bottom: 2px solid #10b981; font-weight: bold; }
+        .tech-table td { padding: 14px; border-bottom: 1px solid rgba(255,255,255,0.05); transition: all 0.3s; color: #cbd5e1; vertical-align: middle; }
+        .tech-table tr:hover td { background: rgba(255,255,255,0.05); color: white; }
+        .table-sub-header { background: rgba(255,255,255,0.03); font-weight: bold; color: #4ade80 !important; text-align: center; letter-spacing: 1px; }
+
+        /* --- Header 特效容器 --- */
+        .header-container { position: relative; width: 100%; overflow: hidden; border-bottom: 1px solid rgba(255,255,255,0.1); padding-top: 100px; padding-bottom: 80px; }
+        
+        /* 1. 流星雨 (#view-advantages) */
+        .header-meteor { background: linear-gradient(to bottom, #0f172a, #020617); position: relative; z-index: 1; }
+        #stars-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; overflow: hidden; }
+        .star { position: absolute; height: 2px; background: linear-gradient(-45deg, #5f91ff, rgba(0,0,255,0)); filter: drop-shadow(0 0 6px #699bff); animation: tail 3000ms ease-in-out infinite, shooting 3000ms ease-in-out infinite; opacity: 0; }
+        .star::before, .star::after { content: ''; position: absolute; top: calc(50% - 1px); right: 0; height: 2px; background: linear-gradient(-45deg, rgba(0,0,255,0), #5f91ff, rgba(0,0,255,0)); border-radius: 100%; transform: translateX(50%) rotateZ(45deg); animation: shining 3000ms ease-in-out infinite; opacity: 0; } 
+        @keyframes tail { 0% { width: 0; } 30% { width: 100px; } 100% { width: 0; } }
+        @keyframes shooting { 0% { transform: translateX(0) translateY(0) rotateZ(45deg); opacity: 1; } 100% { transform: translateX(300px) translateY(300px) rotateZ(45deg); opacity: 0; } }
+        
+        /* 2. 牛熊能量 (#view-rules) */
+        .header-energy { background: #020617; position: relative; }
+        .energy-beam { position: absolute; width: 100%; height: 100%; top: 0; left: 0; opacity: 0.3; pointer-events: none; overflow: hidden; }
+        .energy-beam::before { 
+            content: ''; position: absolute; top: 50%; left: 50%; width: 300vmin; height: 300vmin;
+            transform: translate(-50%, -50%); background: conic-gradient(from 0deg, transparent 0deg, #10b981 90deg, transparent 180deg, #ef4444 270deg, transparent 360deg); 
+            animation: rotate 10s linear infinite; 
+        }
+        @keyframes rotate { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
+
+        /* 3. 黃金神經網絡 (#view-accounts) */
+        .header-gold { background: radial-gradient(circle, #1e1b4b 0%, #020617 100%); position: relative; z-index: 1; }
+        #gold-canvas-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+
+        /* 4. 脈衝能量場 (#view-info) */
+        .header-tech { background: #020617; position: relative; z-index: 1; }
+        .pulsing-energy-field { position: absolute; width: 100%; height: 100%; top: 0; left: 0; overflow: hidden; pointer-events: none; }
+        .pulsing-energy-field::before, .pulsing-energy-field::after {
+            content: ''; position: absolute; border-radius: 50%; opacity: 0.2; filter: blur(50px); animation: pulse-glow 10s infinite ease-in-out alternate;
+        }
+        .pulsing-energy-field::before { width: 400px; height: 400px; background: #8b5cf6; top: 10%; left: 10%; }
+        .pulsing-energy-field::after { width: 500px; height: 500px; background: #3b82f6; bottom: 5%; right: 5%; animation-delay: 2s; animation-duration: 8s; }
+        @keyframes pulse-glow { 0% { transform: scale(0.8); opacity: 0.2; } 100% { transform: scale(1.2); opacity: 0.4; } }
+
+        /* 5. 下載中心 - 黃金數據半球 */
+        .header-download { background: radial-gradient(ellipse at bottom, #111827 0%, #020617 100%); position: relative; z-index: 1; }
+        #download-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+
+        /* 註冊頁特效 */
+        #register-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%); }
+
+        /* 語言選單 */
+        .lang-menu { display: none; position: absolute; top: 100%; right: 0; background: rgba(15, 23, 42, 0.95); border: 1px solid rgba(255,255,255,0.1); border-radius: 0.5rem; min-width: 140px; z-index: 100; }
+        .lang-btn:hover .lang-menu { display: block; }
+        .lang-btn-mobile { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(255,255,255,0.1); }
+
+        /* 通用動畫組件 */
+        .shield-anim { display: inline-block; animation: shieldPulse 3s infinite ease-in-out; transform-origin: center; }
+        @keyframes shieldPulse { 0% { transform: scale(1); filter: drop-shadow(0 0 5px rgba(74, 222, 128, 0.5)); } 50% { transform: scale(1.1); filter: drop-shadow(0 0 20px rgba(74, 222, 128, 0.8)); } 100% { transform: scale(1); filter: drop-shadow(0 0 5px rgba(74, 222, 128, 0.5)); } }
+
+        /* 24h 雙軌行星儀 */
+        .orbit-container { position: relative; width: 80px; height: 80px; display: flex; align-items: center; justify-content: center; }
+        .orbit-ring { position: absolute; width: 100%; height: 100%; border: 2px dashed rgba(59, 130, 246, 0.5); border-radius: 50%; animation: spin 10s linear infinite; }
+        .orbit-ring-inner { position: absolute; width: 70%; height: 70%; border: 2px solid rgba(45, 212, 191, 0.3); border-top-color: #2dd4bf; border-radius: 50%; animation: spin-reverse 6s linear infinite; }
+        .orbit-text { font-family: 'Orbitron', sans-serif; font-weight: bold; font-size: 1.2rem; color: white; text-shadow: 0 0 10px rgba(59, 130, 246, 0.8); animation: pulse-text 2s infinite; }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+        @keyframes spin-reverse { 100% { transform: rotate(-360deg); } }
+        @keyframes pulse-text { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+
+        /* 動態圖標特效 */
+        .icon-radar-container { position: relative; width: 64px; height: 64px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; }
+        .icon-radar-outer { position: absolute; width: 100%; height: 100%; border: 2px dashed rgba(96, 165, 250, 0.5); border-radius: 50%; animation: spin 8s linear infinite; }
+        .icon-radar-inner { position: absolute; width: 60%; height: 60%; border: 2px solid rgba(96, 165, 250, 0.8); border-left-color: transparent; border-radius: 50%; animation: spin-reverse 4s linear infinite; }
+        .icon-radar-core { color: #60a5fa; font-size: 1.5rem; animation: pulse-text 2s infinite; }
+        
+        .icon-growth-container { position: relative; width: 64px; height: 64px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; }
+        .icon-growth-outer { position: absolute; width: 100%; height: 100%; border: 2px solid rgba(74, 222, 128, 0.3); border-top-color: #4ade80; border-radius: 50%; animation: spin 3s linear infinite; }
+        .icon-growth-core { color: #4ade80; font-size: 1.5rem; animation: floatUpIcon 2s ease-in-out infinite; }
+        @keyframes floatUpIcon { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+
+        /* 賬戶星球特效 */
+        .planet-node { position: relative; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: all 0.5s ease; cursor: pointer; }
+        .planet-node:hover { transform: scale(1.1); }
+        .planet-core { z-index: 10; width: 100%; height: 100%; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(8px); border: 2px solid rgba(255,255,255,0.1); box-shadow: inset 0 0 20px rgba(0,0,0,0.5); }
+        .planet-ring { position: absolute; border-radius: 50%; border: 1px dashed rgba(255,255,255,0.2); animation: spin-slow 10s linear infinite; pointer-events: none; }
+        .planet-ring-2 { position: absolute; border-radius: 50%; border-top: 2px solid rgba(255,255,255,0.4); border-left: 2px solid transparent; width: 120%; height: 120%; animation: spin-reverse 8s linear infinite; pointer-events: none; }
+        @keyframes spin-slow { 100% { transform: rotate(360deg); } }
+        
+        .node-mini .planet-core { border-color: #94a3b8; box-shadow: 0 0 30px rgba(148, 163, 184, 0.15); }
+        .node-mini .planet-ring { border-color: rgba(148, 163, 184, 0.3); }
+        .node-std .planet-core { border-color: #3b82f6; box-shadow: 0 0 30px rgba(59, 130, 246, 0.2); }
+        .node-std .planet-ring { border-color: rgba(59, 130, 246, 0.3); }
+        .node-gold .planet-core { border-color: #eab308; box-shadow: 0 0 40px rgba(234, 179, 8, 0.3); background: radial-gradient(circle, rgba(234,179,8,0.1) 0%, rgba(15,23,42,0.8) 100%); }
+        .node-gold .planet-ring { border-color: rgba(234, 179, 8, 0.4); border-style: solid; border-width: 1px; }
+        .node-gold .planet-ring-2 { border-top-color: #eab308; }
+        .node-dia .planet-core { border-color: #a855f7; box-shadow: 0 0 40px rgba(168, 85, 247, 0.3); }
+        .node-dia .planet-ring { border-color: rgba(168, 85, 247, 0.4); }
+
+        .float-bubble { animation: floating 3s ease-in-out infinite; }
+        @keyframes floating { 0% { transform: translateY(0px); } 50% { transform: translateY(-8px); } 100% { transform: translateY(0px); } }
+
+        /* 下載中心步驟特效 */
+        .download-step { position: relative; background: rgba(15, 23, 42, 0.75); border: 1px solid transparent; transition: all 0.4s ease; overflow: hidden; }
+        .download-step:hover { transform: translateY(-5px); box-shadow: 0 0 30px rgba(16, 185, 129, 0.4); border-color: rgba(16, 185, 129, 0.5); }
+        
+        .step-number-container { position: relative; width: 80px; height: 80px; margin: 0 auto 1.5rem; display: flex; align-items: center; justify-content: center; }
+        .step-number-ring { position: absolute; inset: 0; border-radius: 50%; border: 2px solid transparent; animation: stepRotate 8s linear infinite; opacity: 0.5; }
+        .download-step:nth-child(1) .step-number-ring { border-top-color: #4ade80; animation-duration: 5s; }
+        .download-step:nth-child(2) .step-number-ring { border-top-color: #3b82f6; animation-direction: reverse; animation-duration: 6s; }
+        .download-step:nth-child(3) .step-number-ring { border-top-color: #f59e0b; animation-duration: 7s; }
+        .download-step:nth-child(4) .step-number-ring { border-top-color: #a855f7; animation-direction: reverse; animation-duration: 8s; }
+        @keyframes stepRotate { to { transform: rotate(360deg); } }
+        
+        .comp-col-width { width: 130px; min-width: 130px; }
+
+        /* Focus Block Styling */
+        .focus-feature-card { background: rgba(15, 23, 42, 0.7); padding: 24px; border-radius: 12px; transition: all 0.3s ease; cursor: pointer; border: 1px solid transparent; position: relative; z-index: 10; }
+        .focus-feature-card:hover { border-color: rgba(74, 222, 128, 0.5); box-shadow: 0 0 25px rgba(74, 222, 128, 0.2); transform: translateY(-3px); }
+        .left-panel-grid { border-right: 1px dashed rgba(255,255,255,0.1); }
+        .feature-icon-wrapper { position: relative; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%; margin-right: 1rem; }
+        .icon-pulse { animation: iconPulse 2s infinite ease-in-out; }
+        @keyframes iconPulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.8; transform: scale(1.05); } }
+
+        /* Award Carousel */
+        .award-card-container { perspective: 1000px; cursor: pointer; transition: all 0.3s ease; }
+        .award-card { position: relative; background: radial-gradient(circle at top left, rgba(20, 83, 45, 0.7) 0%, rgba(16, 185, 129, 0.1) 100%); padding: 30px; border-radius: 15px; border: 1px solid rgba(16, 185, 129, 0.2); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4); transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.5s ease; transform-style: preserve-3d; will-change: transform; min-height: 250px; display: flex; flex-direction: column; justify-content: space-between; }
+        .award-card-container:hover .award-card { transform: rotateX(5deg) rotateY(-5deg); box-shadow: 0 20px 50px rgba(16, 185, 129, 0.4); }
+        .award-icon-wrapper { position: relative; display: inline-flex; width: 50px; height: 50px; align-items: center; justify-content: center; border-radius: 50%; margin-bottom: 1rem; }
+        .award-card::before { content: ''; position: absolute; inset: 0; border-radius: 15px; padding: 2px; background: conic-gradient(from var(--angle), transparent 0deg, #10b981 10deg, transparent 60deg, #4ade80 70deg, transparent 360deg); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; z-index: 0; opacity: 0; transition: opacity 0.5s ease; animation: award-border-rotate 8s linear infinite; }
+        .award-card-container:hover .award-card::before { opacity: 0.8; }
+        @property --angle { syntax: '<angle>'; initial-value: 0deg; inherits: false; }
+        @keyframes award-border-rotate { to { --angle: 360deg; } }
+        .award-title-text { color: #facc15; text-shadow: 0 0 5px rgba(250, 204, 21, 0.5); font-weight: bold; }
+        .award-title-text-fixed { font-size: 1rem; line-height: 1.5rem; }
+        .award-source-text { color: #94a3b8; font-size: 0.875rem; margin-top: 10px; }
+        
+        .award-carousel-viewport { overflow: hidden; padding: 40px 0 80px; max-width: 1400px; margin: 0 auto; }
+        #award-carousel-track { display: flex; transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94); will-change: transform; }
+        .carousel-card-wrapper { flex: 0 0 20%; padding: 0 10px; opacity: 0.5; transform: scale(0.85); transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94); filter: grayscale(100%); }
+        @media (max-width: 1024px) { .carousel-card-wrapper { flex: 0 0 50%; } }
+        @media (max-width: 640px) { .carousel-card-wrapper { flex: 0 0 100%; } }
+        .carousel-card-wrapper.active { opacity: 1; transform: scale(1.05); filter: grayscale(0%); z-index: 10; }
+        .carousel-card-wrapper.active .award-card { transform: rotateX(0deg) rotateY(0deg); box-shadow: 0 20px 50px rgba(16, 185, 129, 0.5); border-color: rgba(16, 185, 129, 0.5); }
+        .carousel-card-wrapper.active .award-card::before { opacity: 0.9; }
+
+        /* 黃河優勢區塊 */
+        .adv-card-wrapper { perspective: 1000px; cursor: pointer; position: relative; z-index: 10; }
+        .adv-card-3d { position: relative; background: radial-gradient(circle at 50% 50%, rgba(15, 23, 42, 0.85) 0%, rgba(2, 6, 23, 0.95) 100%); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5); border-radius: 1.5rem; padding: 3rem; text-align: center; overflow: hidden; transform-style: preserve-3d; transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+        .adv-card-wrapper:hover .adv-card-3d { transform: rotateX(2deg) rotateY(-2deg) translateY(-5px); border-color: rgba(74, 222, 128, 0.5); box-shadow: 0 20px 60px rgba(16, 185, 129, 0.5); }
+        .adv-card-3d::before { content: ''; position: absolute; inset: -2px; border-radius: 1.5rem; opacity: 0; transition: opacity 0.5s; pointer-events: none; background: conic-gradient(from var(--border-angle), transparent 0deg, var(--ring-color) 30deg, transparent 90deg, var(--ring-color) 120deg, transparent 180deg, var(--ring-color) 210deg, transparent 270deg, var(--ring-color) 300deg, transparent 360deg); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; z-index: 0; animation: node-border-rotate 8s linear infinite; }
+        .adv-card-3d::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 3px; background: linear-gradient(90deg, transparent 0%, var(--ring-color) 20%, transparent 80%); opacity: 0.5; filter: blur(1px); animation: data-flow 5s linear infinite; transform: translateY(10px); z-index: 1; }
+        @property --border-angle { syntax: '<angle>'; initial-value: 0deg; inherits: false; }
+        @keyframes node-border-rotate { to { --border-angle: 360deg; } }
+        @keyframes data-flow { 0% { transform: translateX(-100%) translateY(0px); } 50% { transform: translateX(100%) translateY(0px); } 50.1% { transform: translateX(-100%) translateY(0px); } 100% { transform: translateX(100%) translateY(0px); } }
+        .adv-card-wrapper:hover .adv-card-3d::before { opacity: 0.8; }
+        .adv-icon-ring { position: relative; width: 96px; height: 96px; margin: 0 auto 2rem; display: flex; align-items: center; justify-content: center; }
+        .adv-icon-ring::before { content: ''; position: absolute; inset: 0; border-radius: 50%; border: 3px solid transparent; border-top-color: var(--ring-color); border-right-color: var(--ring-color); opacity: 0.6; animation: spin 5s linear infinite; }
+        .adv-icon-ring::after { content: ''; position: absolute; width: 80%; height: 80%; border-radius: 50%; background: var(--ring-color); opacity: 0.1; filter: blur(15px); animation: inner-pulse 2s infinite ease-in-out alternate; }
+        @keyframes inner-pulse { 0% { transform: scale(0.9); opacity: 0.1; } 100% { transform: scale(1.1); opacity: 0.25; } }
+        .adv-icon-ring .fa-solid { z-index: 10; position: relative; filter: drop-shadow(0 0 10px var(--ring-color)); }
+
+        /* 信任之盾 */
+        .trust-shield-block { background: radial-gradient(circle at top left, rgba(16, 185, 129, 0.05) 0%, rgba(15, 23, 42, 0.95) 100%); border: 1px solid rgba(16, 185, 129, 0.2); box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5); border-radius: 2rem; overflow: hidden; position: relative; z-index: 10; transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+        .trust-shield-block:hover { box-shadow: 0 0 60px rgba(16, 185, 129, 0.3); transform: translateY(-8px); }
+        .data-globe-container { perspective: 800px; margin: 0 auto 2rem; width: 120px; height: 120px; position: relative; display: flex; align-items: center; justify-content: center; }
+        .globe-core { position: relative; width: 60px; height: 60px; border-radius: 50%; background: radial-gradient(circle, rgba(74, 222, 128, 0.5) 0%, rgba(16, 185, 129, 0.1) 100%); box-shadow: 0 0 25px #4ade80; display: flex; align-items: center; justify-content: center; z-index: 10; animation: corePulse 2s infinite ease-in-out alternate; }
+        .globe-core .fa-solid { color: white; font-size: 2.5rem; text-shadow: 0 0 8px #4ade80; }
+        .globe-orbit { position: absolute; border-radius: 50%; border: 2px solid rgba(74, 222, 128, 0.6); opacity: 0.8; pointer-events: none; z-index: 5; }
+        .globe-orbit-1 { width: 120px; height: 120px; border-top-color: transparent; border-bottom-color: transparent; transform: rotateX(75deg) rotateZ(0deg); animation: orbitSpin 15s infinite linear; }
+        .globe-orbit-2 { width: 100px; height: 100px; border-left-color: transparent; border-right-color: transparent; border-color: rgba(59, 130, 246, 0.6); transform: rotateY(75deg) rotateZ(0deg); animation: orbitSpinReverse 10s infinite linear; }
+        .data-stream { position: absolute; width: 6px; height: 6px; border-radius: 50%; background: #2dd4bf; box-shadow: 0 0 10px #2dd4bf; animation: streamFlow 5s infinite linear; z-index: 15; }
+        @keyframes corePulse { 0% { transform: scale(1); opacity: 0.9; box-shadow: 0 0 20px #4ade80; } 100% { transform: scale(1.05); opacity: 1; box-shadow: 0 0 35px #4ade80; } }
+        @keyframes orbitSpin { to { transform: rotateX(75deg) rotateZ(360deg); } }
+        @keyframes orbitSpinReverse { to { transform: rotateY(75deg) rotateZ(-360deg); } }
+        @keyframes streamFlow { 0% { transform: translate(-60px, 0) rotateZ(0deg); } 100% { transform: translate(60px, 0) rotateZ(360deg); } }
+
+        /* 監管認證徽章 */
+        .reg-badge-card { position: relative; background: rgba(15, 23, 42, 0.9); border: 2px solid #3b82f6; box-shadow: 0 0 30px rgba(59, 130, 246, 0.2); padding: 30px; border-radius: 1.5rem; text-align: center; transition: all 0.4s ease; transform-style: preserve-3d; transform: rotateX(5deg) rotateY(5deg); }
+        .reg-badge-card:hover { box-shadow: 0 0 50px rgba(59, 130, 246, 0.5); transform: rotateX(0deg) rotateY(0deg); }
+        .reg-badge-icon { position: relative; width: 100px; height: 100px; margin: 0 auto 1.5rem; border-radius: 50%; background: #3b82f6; display: flex; align-items: center; justify-content: center; animation: badgePulse 3s infinite ease-in-out; filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.5)); }
+        .reg-badge-icon::before { content: '196'; position: absolute; top: -10px; right: -10px; background: #10b981; color: white; font-size: 1rem; font-weight: bold; padding: 5px 10px; border-radius: 10px; z-index: 10; }
+        @keyframes badgePulse { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.05); opacity: 0.9; } }
+        
+
+        /* 榮譽獲獎卡片 (V19) */
+        .award-3d-card-wrapper { position: relative; perspective: 1000px; cursor: pointer; transition: all 0.4s ease; }
+        .award-3d-card-wrapper[data-color="green"] { --main-color: #4ade80; --shadow-color: rgba(74, 222, 128, 0.6); }
+        .award-3d-card-wrapper[data-color="blue"] { --main-color: #3b82f6; --shadow-color: rgba(59, 130, 246, 0.6); }
+        .award-3d-card-wrapper[data-color="yellow"] { --main-color: #facc15; --shadow-color: rgba(250, 204, 21, 0.6); }
+        .award-3d-card-wrapper[data-color="purple"] { --main-color: #a855f7; --shadow-color: rgba(168, 85, 247, 0.6); }
+        .award-card-inner { position: relative; background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 1.5rem; padding: 30px; text-align: center; min-height: 200px; transform-style: preserve-3d; transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.6s ease; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4); overflow: hidden; z-index: 10; }
+        .award-3d-card-wrapper:hover .award-card-inner { transform: rotateX(5deg) rotateY(-5deg) translateY(-8px); box-shadow: 0 25px 50px var(--shadow-color); }
+        .award-card-inner::before { content: ''; position: absolute; inset: -2px; border-radius: 1.5rem; background: conic-gradient(from var(--angle), transparent 0deg, var(--main-color) 10deg, transparent 60deg, var(--main-color) 70deg, transparent 360deg); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; z-index: 0; opacity: 0.5; animation: award-border-rotate 8s linear infinite; }
+        .award-icon-container { position: relative; width: 80px; height: 80px; margin: 0 auto 1.5rem; display: flex; align-items: center; justify-content: center; }
+        .award-icon-float { animation: iconFloating 3s infinite ease-in-out alternate; }
+        @keyframes iconFloating { 0% { transform: translateY(0) scale(1); } 100% { transform: translateY(-5px) scale(1.05); } }
+        .award-icon-container::before { content: ''; position: absolute; inset: -10px; border-radius: 50%; background: var(--main-color); opacity: 0.15; filter: blur(20px); animation: award-glow 4s infinite ease-in-out alternate; }
+        @keyframes award-glow { 0% { transform: scale(0.8); opacity: 0.1; } 100% { transform: scale(1.1); opacity: 0.3; } }
+        .award-icon-container .fa-solid { font-size: 3rem; color: var(--main-color); filter: drop-shadow(0 0 12px var(--main-color)); z-index: 10; }
+        .award-3d-card-wrapper h3 { color: white; text-shadow: 0 0 5px rgba(255, 255, 255, 0.2); font-family: 'Orbitron', sans-serif; }
+
+        /* 未來脈衝 & 時間軸 */
+        .future-pulse-ring { position: absolute; width: 100%; height: 100%; border: 2px solid rgba(251, 191, 36, 0.3); border-radius: 50%; animation: future-pulse 3s infinite ease-out; }
+        @keyframes future-pulse { 0% { transform: scale(0.8); opacity: 0.8; } 100% { transform: scale(1.5); opacity: 0; } }
+        .journey-timeline { position: relative; max-width: 1200px; margin: 0 auto; padding: 60px 20px; }
+        .timeline-path { position: absolute; left: 50%; top: 0; bottom: 0; width: 4px; background: linear-gradient(to bottom, transparent, #10b981, #f59e0b, #3b82f6, transparent); transform: translateX(-50%); z-index: 0; }
+        .timeline-item { position: relative; margin-bottom: 60px; display: flex; align-items: center; z-index: 1; }
+        .timeline-item:nth-child(odd) { flex-direction: row-reverse; }
+        .timeline-item:nth-child(odd) .timeline-content { margin-right: 50%; margin-left: 40px; }
+        .timeline-item:nth-child(even) .timeline-content { margin-left: 50%; margin-right: 40px; }
+        .timeline-dot { position: absolute; left: 50%; top: 0; width: 40px; height: 40px; background: #020617; border-radius: 50%; transform: translateX(-50%); display: flex; align-items: center; justify-content: center; z-index: 2; }
+        .timeline-dot-inner { width: 20px; height: 20px; border-radius: 50%; background: linear-gradient(135deg, #f59e0b, #3b82f6); animation: timeline-dot-pulse 2s infinite; }
+        @keyframes timeline-dot-pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7); } 50% { box-shadow: 0 0 0 20px rgba(245, 158, 11, 0); } }
+        .timeline-icon { width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+        .timeline-content { flex: 1; transition: all 0.3s ease; }
+        .timeline-content:hover { transform: translateY(-5px); border-color: rgba(255, 255, 255, 0.2); }
+        
+        .slogan-text-pc { font-size: 2.6rem; line-height: 1.2; }
+        @media (min-width: 768px) { .slogan-text-pc { font-size: 4.5rem; line-height: 1.1; } }
+
+        /* CTA Block */
+        .cta-glow-panel { position: relative; background: radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.1) 0%, #020617 100%); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 3rem; padding: 4rem; overflow: hidden; z-index: 10; }
+        .cta-header-icon { position: relative; display: inline-flex; width: 100px; height: 100px; align-items: center; justify-content: center; margin-bottom: 2rem; }
+        .cta-header-icon::before { content: ''; position: absolute; inset: 0; border-radius: 50%; background: #facc15; opacity: 0.15; filter: blur(25px); animation: award-glow 4s infinite ease-in-out alternate; }
+        .cta-header-icon .fas { font-size: 3.5rem; color: #facc15; filter: drop-shadow(0 0 15px #facc15); animation: iconFloating 3s infinite ease-in-out alternate; }
+        .cta-stat-item { position: relative; padding: 1rem; border-left: 3px solid #10b981; transition: all 0.3s ease; cursor: pointer; }
+        .cta-stat-item:hover { background: rgba(16, 185, 129, 0.1); border-color: #4ade80; }
+        
+        @media (max-width: 768px) {
+            .timeline-path { left: 40px; }
+            .timeline-item { flex-direction: column !important; align-items: flex-start; }
+            .timeline-dot { left: 40px; }
+            .timeline-item:nth-child(odd) .timeline-content, .timeline-item:nth-child(even) .timeline-content { margin-left: 80px; margin-right: 20px; width: calc(100% - 100px); }
+            .future-pulse-ring { width: 300px; height: 300px; }
+            .left-panel-grid { border-right: none; border-bottom: 1px dashed rgba(255,255,255,0.1); padding-bottom: 1.5rem; margin-bottom: 1.5rem; padding-right: 0; }
+            .cta-glow-panel { padding: 2rem; border-radius: 2rem; }
+            .cta-glow-panel .text-4xl { font-size: 2.25rem; }
+            .cta-glow-panel .text-xl { font-size: 1.15rem; }
+            .cta-glow-panel .text-2xl { font-size: 1.5rem; }
+        }
+
+        /* Mobile Menu */
+        #mobile-menu { transform: translateX(100%); overflow-y: scroll; }
+        .mobile-menu-open { transform: translateX(0) !important; }
+        .menu-close-icon { transform: rotate(90deg) scale(0.9); color: #4ade80; }
+        
+        @media (max-width: 640px) {
+             .mobile-en-compact #nav-logo-text { font-family: 'Noto Sans SC', sans-serif !important; font-size: 1rem; letter-spacing: normal; line-height: 1.25rem; }
+             .mobile-en-compact .btn-glow { padding: 0.5rem 0.75rem; font-size: 0.75rem; white-space: nowrap; }
+             .mobile-en-compact .flex.justify-between.items-center { gap: 0.5rem; }
+             .mobile-en-compact .flex.items-center.gap-3 { gap: 0.25rem !important; }
+             .mobile-en-compact .flex.items-center.gap-3 img { height: 2.25rem; }
+             .mobile-en-compact #mobile-menu-toggle { margin-left: 0.5rem; }
+             
+             #view-home .md\:grid-cols-3 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 1.5rem; }
+             #view-home .md\:grid-cols-3 > div:last-child { grid-column: span 2 / span 2; text-align: center; max-width: 50%; margin-left: auto; margin-right: auto; }
+             #view-home .hidden.lg\:block.h-\[600px\] { display: block !important; height: 400px !important; margin-top: 3rem; }
+             #view-home .w-80 { width: 250px !important; }
+             #view-home .w-80.h-\[500px\] { height: 380px !important; }
+             #view-home .w-80.h-\[500px\] .rounded-\[3rem\] { border-radius: 2rem !important; }
+             #view-home .w-80.h-\[500px\] .rounded-\[2\.5rem\] { border-radius: 1.5rem !important; padding: 1.5rem !important; }
+             #view-home .w-80.h-\[500px\] .text-4xl { font-size: 2rem !important; }
+             #view-home .md\:grid-cols-2 > div { padding: 1.5rem; }
+             #view-home .max-w-5xl.mx-auto.glass-panel .grid.md\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 1rem; }
+             #view-home .max-w-5xl.mx-auto.glass-panel .grid.md\:grid-cols-2 > div { padding: 1rem !important; }
+             #view-home .max-w-5xl.mx-auto.glass-panel .grid.md\:grid-cols-2 .icon-radar-container, #view-home .max-w-5xl.mx-auto.glass-panel .grid.md\:grid-cols-2 .icon-growth-container { width: 50px !important; height: 50px !important; }
+             #view-home .max-w-5xl.mx-auto.glass-panel .grid.md\:grid-cols-2 .icon-radar-core, #view-home .max-w-5xl.mx-auto.glass-panel .grid.md\:grid-cols-2 .icon-growth-core { font-size: 1.25rem !important; }
+             #view-home .max-w-5xl.mx-auto.glass-panel .grid.md\:grid-cols-2 .text-2xl { font-size: 1.25rem !important; }
+             #view-home .max-w-5xl.mx-auto.glass-panel .max-w-3xl.mx-auto { padding: 1.5rem !important; }
+             #view-home .max-w-5xl.mx-auto.glass-panel .max-w-3xl.mx-auto .text-lg { font-size: 0.875rem !important; line-height: 1.5; }
+             #view-rules .md\:grid-cols-2 { grid-template-columns: repeat(1, minmax(0, 1fr)) !important; gap: 1.5rem; }
+             #view-accounts .lg\:grid-cols-4 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 1.5rem; }
+             #view-accounts .glass-panel { padding: 1.5rem !important; }
+             #view-accounts .flex-col.md\:flex-row { display: grid !important; grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 1.5rem !important; padding: 0 !important; }
+             #view-accounts .hidden.md\:block.absolute { display: none !important; }
+             #view-accounts .planet-node { margin: 0 auto !important; transform: none !important; width: 120px !important; height: 120px !important; }
+             #view-accounts .node-gold { transform: none !important; }
+             #view-download .md\:grid-cols-4 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 1.5rem; }
+             #view-download .download-step .text-7xl { font-size: 3rem; }
+             #view-download .download-step .step-number-container { width: 60px; height: 60px; }
+             #view-download .comp-col-width { min-width: 100px; width: 100px; font-size: 0.875rem; }
+             #view-download .flex.justify-between.items-center span { font-size: 0.875rem; }
+             #view-download .flex.flex-col.sm\:flex-row { flex-direction: column !important; gap: 1rem; }
+             #view-download .max-w-6xl.mx-auto.text-center h2 { font-size: 2rem !important; white-space: pre-wrap !important; overflow-wrap: break-word !important; line-height: 1.15; }
+             #view-download .max-w-6xl.mx-auto.text-center p { font-size: 1.15rem !important; line-height: 1.4; }
+             #view-download .left-panel-grid h3, #view-download .lg\:pl-6 h3 { font-size: 1.75rem !important; }
+             #view-advantages .md\:grid-cols-3 { grid-template-columns: repeat(1, minmax(0, 1fr)) !important; gap: 1.5rem; }
+             #view-advantages .adv-card-3d { padding: 2rem !important; }
+             #view-advantages .md\:grid-cols-4 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 1rem; }
+             #view-advantages .award-card-inner { padding: 20px !important; min-height: 180px; }
+             #view-advantages .award-icon-container { width: 60px; height: 60px; margin-bottom: 0.5rem; }
+             #view-advantages .award-icon-container .fa-solid { font-size: 2rem; }
+             #view-advantages .award-3d-card-wrapper h3 { font-size: 1rem; line-height: 1.25rem; }
+             #view-info .md\:grid-cols-2 { grid-template-columns: repeat(1, minmax(0, 1fr)) !important; gap: 1.5rem; }
+             #view-info .glass-panel { padding: 1.5rem !important; }
+             #view-info .w-24.h-24 { width: 60px !important; height: 60px !important; }
+             #view-info .w-24.h-24 .fa-4xl { font-size: 2rem !important; }
+             #view-info .font-bold.text-2xl { font-size: 1.25rem !important; }
+             #view-info .text-sm.text-slate-400 { font-size: 0.75rem !important; }
+             footer .md\:grid-cols-4 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 1.5rem; }
+             #view-advantages .trust-shield-block { padding: 1.5rem !important; }
+             #view-advantages .trust-shield-block .border-b.pb-8 { padding-bottom: 1.5rem !important; }
+             #view-advantages .trust-shield-block .text-4xl.font-black { font-size: 1.75rem; }
+             #view-advantages .trust-shield-block .text-lg.text-center { font-size: 1rem; }
+             #view-advantages .reg-badge-card { padding: 1.5rem !important; }
+             #view-advantages .reg-badge-card .text-2xl.font-black { font-size: 1.25rem; }
+             #view-register .lg\:grid-cols-2 > div:first-child { display: none !important; }
+             #view-register .lg\:grid-cols-2 > div:last-child { grid-column: span 2 / span 2; padding-top: 2rem; }
+             #view-register .glass-panel { padding: 2rem !important; margin-top: 0 !important; border-radius: 1.5rem !important; }
+             .slogan-text-pc { font-size: 2.6rem !important; }
+        }
+        @media (min-width: 1024px) {
+            #view-home .container.lg\:grid-cols-2 > div:first-child { transform: translateY(-90px); }
+            #view-home .container.lg\:grid-cols-2 > div:last-child { transform: translateY(-30px); }
+        }
+
+        /* --- 新增：守護者卡片自動發光動畫 --- */
+        .guardian-card.active-glow {
+            border-color: #22c55e !important; /* 強制變成綠色邊框 */
+            box-shadow: 0 0 20px rgba(34, 197, 94, 0.2); /* 增加一點發光暈影 */
+            transform: translateY(-5px); /* 微微上浮 */
+        }
+
+        /* 讓卡片內的圖標也變色 */
+        .guardian-card.active-glow i {
+            color: #4ade80 !important; /* 強制變綠色 */
+            transform: scale(1.1); /* 圖標微微放大 */
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+<canvas id="main-canvas" class="fixed top-0 left-0 w-full h-full -z-10 opacity-40 pointer-events-none"></canvas>
+    <canvas id="register-canvas"></canvas>
+	<nav class="fixed top-0 w-full z-50 glass-panel border-b-0 rounded-none transition-all duration-300 h-[80px] flex items-center" id="navbar">
+        <div class="container mx-auto px-6 flex justify-between items-center" id="nav-content">
+            <div class="flex items-center gap-3 cursor-pointer" onclick="switchView('home')">
+                <img src="https://rawcdn.githack.com/foronlinetet/video/71a6752951b38bf047a5a7fceaadd4ef553cd07f/grlogo.svg" alt="Logo" class="h-10 w-auto object-contain">
+                <span class="text-xl font-bold tracking-widest text-white block" id="nav-logo-text" data-key="nav_logo_text" style="font-family: 'Orbitron', sans-serif;">Golden River</span>
+                </div>
+            <div class="hidden lg:flex gap-8 text-sm font-bold tracking-wide text-slate-300">
+                <button onclick="switchView('home')" class="hover:text-green-400 transition-colors py-2 nav-link active" data-key="nav_home">首頁</button>
+                <button onclick="switchView('rules')" class="hover:text-green-400 transition-colors py-2 nav-link" data-key="nav_rules">投資規則</button>
+                <button onclick="switchView('accounts')" class="hover:text-green-400 transition-colors py-2 nav-link" data-key="nav_accounts">賬戶類型</button>
+                <button onclick="switchView('download')" class="hover:text-green-400 transition-colors py-2 nav-link" data-key="nav_download">下載中心</button>
+                <button onclick="switchView('advantages')" class="hover:text-green-400 transition-colors py-2 nav-link" data-key="nav_advantages">黃河優勢</button>
+                <button onclick="switchView('info')" class="hover:text-green-400 transition-colors py-2 nav-link" data-key="nav_info">資訊中心</button>
+            </div>
+            <div class="flex items-center gap-4">
+                <div class="relative lang-btn py-2 cursor-pointer text-slate-300 hover:text-white hidden sm:block">
+                    <span class="flex items-center gap-2"><i class="fas fa-globe"></i> <span id="current-lang-label">繁體中文</span></span>
+                    <div class="lang-menu shadow-xl">
+                        <div onclick="setLang('tw')" class="px-4 py-3 hover:bg-green-500/20 hover:text-green-400 cursor-pointer">繁體中文</div>
+                        <div onclick="setLang('cn')" class="px-4 py-3 hover:bg-green-500/20 hover:text-green-400 cursor-pointer">简体中文</div>
+                        <div onclick="setLang('en')" class="px-4 py-3 hover:bg-green-500/20 hover:text-green-400 cursor-pointer">English</div>
+                    </div>
+                </div>
+                <div class="relative lang-btn py-0 cursor-pointer text-slate-300 hover:text-white sm:hidden">
+                    <div class="lang-btn-mobile"><i class="fas fa-globe text-xl"></i></div>
+                    <div id="nav-mobile-lang-container" class="lang-menu shadow-xl" style="right: -4px;">
+                        <div id="nav-m-lang-tw" onclick="setLang('tw')" class="px-4 py-3 hover:bg-green-500/20 hover:text-green-400 cursor-pointer text-slate-400" data-key="lang_tw">繁體中文</div>
+                        <div id="nav-m-lang-cn" onclick="setLang('cn')" class="px-4 py-3 hover:bg-green-500/20 hover:text-green-400 cursor-pointer text-slate-400" data-key="lang_cn">简体中文</div>
+                        <div id="nav-m-lang-en" onclick="setLang('en')" class="px-4 py-3 hover:bg-green-500/20 hover:text-green-400 cursor-pointer text-slate-400" data-key="lang_en">English</div>
+                    </div>
+                </div>
+                <button onclick="switchView('register')" class="btn-glow bg-gradient-to-r from-green-500 to-teal-500 text-black font-bold px-4 py-2 rounded-full text-sm sm:px-6 sm:py-2 sm:text-base" data-key="btn_open_account">註冊真實賬戶</button>
+                <button id="mobile-menu-toggle" class="text-white text-2xl lg:hidden focus:outline-none ml-2" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars transition-transform duration-300" id="hamburger-icon"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+    <div id="mobile-menu" class="fixed top-0 left-0 w-full h-full bg-[#020617] z-40 transform translate-x-full transition-transform duration-500 ease-in-out lg:hidden pt-20 overflow-y-auto">
+        <div class="container mx-auto px-6 py-6"> 
+             <div class="flex flex-col gap-4 text-xl font-bold tracking-wide text-slate-300 border-b border-white/10 pb-4 mb-4"> 
+                <button onclick="switchView('home')" class="text-left hover:text-green-400 transition-colors py-1 mobile-nav-link active" data-key="nav_home">首頁</button> 
+                <button onclick="switchView('rules')" class="text-left hover:text-green-400 transition-colors py-1 mobile-nav-link" data-key="nav_rules">投資規則</button> 
+                <button onclick="switchView('accounts')" class="text-left hover:text-green-400 transition-colors py-1 mobile-nav-link" data-key="nav_accounts">賬戶類型</button> 
+                <button onclick="switchView('download')" class="text-left hover:text-green-400 transition-colors py-1 mobile-nav-link" data-key="nav_download">下載中心</button> 
+                <button onclick="switchView('advantages')" class="text-left hover:text-green-400 transition-colors py-1 mobile-nav-link" data-key="nav_advantages">黃河優勢</button> 
+                <button onclick="switchView('info')" class="text-left hover:text-green-400 transition-colors py-1 mobile-nav-link" data-key="nav_info">資訊中心</button> 
+            </div>
+            <div class="p-4 glass-panel rounded-2xl mb-4"> <h4 class="text-lg font-bold text-green-400 mb-3 flex items-center gap-2"><i class="fas fa-globe"></i> <span data-key="m_lang_select">語言選擇</span></h4> <div class="flex justify-between items-center text-slate-400 text-base">
+                    <div id="lang-btn-mobile-tw" onclick="setLang('tw')" class="px-3 py-1 hover:bg-green-500/20 hover:text-green-400 cursor-pointer rounded-lg text-slate-400" data-key="lang_tw">繁體中文</div> <div id="lang-btn-mobile-cn" onclick="setLang('cn')" class="px-3 py-1 hover:bg-green-500/20 hover:text-green-400 cursor-pointer rounded-lg text-slate-400" data-key="lang_cn">简体中文</div> <div id="lang-btn-mobile-en" onclick="setLang('en')" class="px-3 py-1 hover:bg-green-500/20 hover:text-green-400 cursor-pointer rounded-lg text-slate-400" data-key="lang_en">English</div> </div>
+            </div>
+            <div class="p-4 glass-panel rounded-2xl"> <h4 class="text-lg font-bold text-green-400 mb-3" data-key="ft_service_online">快速聯繫</h4> <div class="space-y-3 text-slate-400 text-base"> <div class="flex items-center gap-3"><i class="fas fa-headset text-green-500"></i> <span data-key="ft_service_online">在線客服：點擊開啟</span></div>
+                     <div class="flex items-center gap-3"><i class="fas fa-phone text-green-500"></i> +852-3703 1548</div>
+                </div>
+            </div>
+            <button onclick="switchView('register')" class="btn-glow bg-gradient-to-r from-green-500 to-teal-500 text-black font-bold px-6 py-3 rounded-full w-full mt-6 text-lg" data-key="btn_open_account">註冊真實賬戶</button> 
+            
+            <div class="text-center mt-6"> <button class="text-slate-500 text-sm hover:text-white" onclick="toggleMobileMenu()" data-key="btn_close_menu">關閉選單</button>
+            </div>
+        </div>
+    </div>
+	<div id="view-home" class="view-section active">
+	<section class="min-h-screen flex items-center relative pt-20">
+            <div class="container mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+                <div data-aos="fade-right">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 border border-green-500/50 rounded-full text-green-400 text-xs font-bold uppercase tracking-widest mb-6 bg-green-500/10">
+                        <span class="w-2 h-2 rounded-full bg-green-400 animate-ping"></span> <span data-key="hero_badge">NO.196 香港黃金交易所行員</span>
+                    </div>
+                    <h1 class="text-6xl lg:text-8xl font-black leading-tight mb-6" data-key="hero_title">
+                        無需高額成本 <br> <span class="text-gradient">玩轉巨大財富</span>
+                    </h1>
+                    <p class="text-xl text-slate-400 mb-8 border-l-4 border-green-500 pl-6 leading-relaxed" data-key="hero_desc">
+                        專業合格監管，享受智慧投資。<br>毫秒級下單，抓住每個盈利機會。<br>優於市場的低點差且不收佣金。
+                    </p>
+                    <div class="flex gap-4">
+                        <button onclick="switchView('register')" class="btn-glow bg-white text-black px-10 py-4 rounded-full font-bold text-lg hover:bg-green-400 transition-colors" data-key="btn_start_now">立即開戶 <i class="fas fa-arrow-right ml-2"></i></button>
+                        <button onclick="switchView('download')" class="px-10 py-4 rounded-full font-bold text-lg border border-white/20 hover:bg-white/10 backdrop-blur-md" data-key="btn_dl_app">下載 APP</button>
+                    </div>
+                </div>
+                <div class="lg:block h-[600px]" data-aos="fade-left">
+                    <div class="absolute inset-0 bg-green-500/10 blur-[100px] rounded-full"></div>
+                    <div class="glass-panel w-80 h-[500px] mx-auto rounded-[3rem] border-4 border-slate-600 p-4 transform rotate-[-6deg] hover:rotate-0 transition-all duration-700 shadow-2xl relative z-10">
+                        <div class="bg-[#0f172a] w-full h-full rounded-[2.5rem] overflow-hidden p-6 relative flex flex-col justify-between">
+                            <div>
+                                <div class="flex justify-between items-center text-slate-400 mb-8"><i class="fas fa-bars"></i><span class="text-green-500 font-bold">Golden River</span></div>
+                                <div class="text-center">
+                                    <div class="text-sm text-slate-500" data-key="app_assets">總資產 (USD)</div>
+                                    <div class="text-4xl font-bold text-white">$12,450.00</div>
+                                    <div class="text-green-400 text-sm mt-2">+24.5% Profit</div>
+                                </div>
+                            </div>
+                            <div class="space-y-3">
+                                <div class="h-12 bg-slate-800 rounded-xl flex items-center px-4 justify-between"><span class="text-sm">LLG</span><span class="text-green-400">+0.45%</span></div>
+                                <div class="h-12 bg-slate-800 rounded-xl flex items-center px-4 justify-between"><span class="text-sm">LLS</span><span class="text-green-400">+1.20%</span></div>
+                            </div>
+                            <button onclick="switchView('register')" class="w-full bg-green-500 text-black font-bold py-3 rounded-xl hover:bg-green-400" data-key="app_trade_btn">一鍵交易</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20 relative bg-white/5 border-y border-white/5">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl font-bold mb-12 text-slate-300" data-aos="fade-up" data-key="eco_title">金融生態系統</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2 gap-12"> <div data-aos="fade-up" data-aos-delay="0">
+                        <div class="w-20 h-20 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-6 hover:scale-110 transition-transform"><i class="fas fa-globe text-3xl text-green-400"></i></div>
+                        <h3 class="text-xl font-bold text-white mb-2" data-key="eco_1">全球市場</h3>
+                        <p class="text-sm text-slate-400" data-key="eco_1_d">連接國際頂級流動性供應商</p>
+                    </div>
+                    <div data-aos="fade-up" data-aos-delay="100">
+                        <div class="w-20 h-20 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-6 hover:scale-110 transition-transform"><i class="fas fa-microchip text-3xl text-blue-400"></i></div>
+                        <h3 class="text-xl font-bold text-white mb-2" data-key="eco_2">極速引擎</h3>
+                        <p class="text-sm text-slate-400" data-key="eco_2_d">專利撮合技術，毫秒級成交</p>
+                    </div>
+                    <div data-aos="fade-up" data-aos-delay="200">
+                        <div class="w-20 h-20 bg-purple-500/20 rounded-full flex items-center justify-center mx-auto mb-6 hover:scale-110 transition-transform"><i class="fas fa-lock text-3xl text-purple-400"></i></div>
+                        <h3 class="text-xl font-bold text-white mb-2" data-key="eco_3">加密安全</h3>
+                        <p class="text-sm text-slate-400" data-key="eco_3_d">銀行級數據防護標準</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-24 bg-slate-900/30">
+            <div class="container mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+                <div data-aos="fade-right">
+                    <h2 class="text-4xl font-bold mb-6 text-white" data-key="expert_title">無需金融專業 <br> <span class="text-gradient">隨時掌控市場盤</span></h2>
+                    <p class="text-slate-400 leading-relaxed text-lg mb-8" data-key="expert_desc">数十位专业分析师在线制定操盘建议，您将能在黄河控股轻松投资聪明获利没烦恼。</p>
+                    <button onclick="switchView('download')" class="border border-green-500 text-green-500 px-8 py-3 rounded-full hover:bg-green-500 hover:text-black transition-all" data-key="btn_get_analysis">取得專業分析</button>
+                </div>
+                <div class="grid grid-cols-2 gap-6" data-aos="fade-left">
+                    <div class="glass-panel p-8 rounded-2xl text-center hover:scale-105 transition-transform">
+                        <i class="fas fa-chart-line text-5xl text-green-400 mb-4"></i>
+                        <h4 class="font-bold text-white" data-key="feat_expert">專業團隊</h4>
+                    </div>
+                    <div class="glass-panel p-8 rounded-2xl text-center translate-y-8 hover:translate-y-6 transition-transform">
+                        <i class="fas fa-signal text-5xl text-blue-400 mb-4"></i>
+                        <h4 class="font-bold text-white" data-key="feat_signal">精準信號</h4>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-24">
+            <div class="container mx-auto px-6 text-center">
+                <div class="max-w-4xl mx-auto glass-panel p-12 rounded-3xl relative overflow-hidden border border-green-500/20" data-aos="zoom-in">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-green-500 to-transparent"></div>
+                    <div class="relative w-32 h-32 mx-auto mb-8 flex items-center justify-center">
+                        <div class="absolute inset-0 bg-green-500/20 rounded-full blur-xl animate-pulse"></div>
+                        <div class="absolute inset-0 border-2 border-t-green-400 border-r-transparent border-b-green-400 border-l-transparent rounded-full animate-spin"></div>
+                        <i class="fas fa-shield-alt text-5xl text-white relative z-10 shield-anim drop-shadow-[0_0_15px_#4ade80]"></i>
+                    </div>
+                    <h2 class="text-4xl font-bold mb-6 text-white" data-key="enc_title">獨家加密技術</h2>
+                    <p class="text-slate-400 text-lg leading-relaxed mb-10" data-key="enc_desc">
+                        我們採用最先進的科技防護，確保您的數據在傳輸和存儲過程中得到保障。我們引以為傲的加密安全技術將成為您最值得信賴的護衛·為您提供安心和放心的操作體驗。
+                    </p>
+                    <button onclick="switchView('register')" class="btn-glow bg-green-500 text-black px-12 py-4 rounded-full font-bold text-lg" data-key="btn_safe_trade">立即體驗安全交易</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-24 bg-gradient-to-t from-slate-900 to-transparent">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl font-bold mb-4 text-white" data-key="guard_title">您的財富守護者</h2>
+                <p class="text-slate-400 mb-16" data-key="guard_sub">您的資金安全是我們最重要的關注點。我們不斷更新和改進我們的安全系統，確保您的資金始終安全可靠。</p>
+                <div class="grid grid-cols-2 md:grid-cols-4 sm:grid-cols-2 gap-8"> 
+                    <div class="glass-panel p-8 rounded-2xl group hover:border-green-500 transition-colors guardian-card" data-aos="fade-up" data-aos-delay="0">
+                        <i class="fas fa-lock text-5xl text-slate-500 group-hover:text-green-400 mb-6 transition-colors"></i>
+                        <h4 class="font-bold text-xl text-white mb-2" data-key="sec_1">加密技術</h4>
+                        <p class="text-sm text-slate-500" data-key="sec_1_d">安全無憂</p>
+                    </div>
+                    <div class="glass-panel p-8 rounded-2xl group hover:border-green-500 transition-colors guardian-card" data-aos="fade-up" data-aos-delay="100">
+                        <i class="fas fa-database text-5xl text-slate-500 group-hover:text-green-400 mb-6 transition-colors"></i>
+                        <h4 class="font-bold text-xl text-white mb-2" data-key="sec_2">數據保護</h4>
+                        <p class="text-sm text-slate-500" data-key="sec_2_d">隱私傳輸</p>
+                    </div>
+                    <div class="glass-panel p-8 rounded-2xl group hover:border-green-500 transition-colors guardian-card" data-aos="fade-up" data-aos-delay="200">
+                        <i class="fas fa-coins text-5xl text-slate-500 group-hover:text-green-400 mb-6 transition-colors"></i>
+                        <h4 class="font-bold text-xl text-white mb-2" data-key="sec_3">數字資產</h4>
+                        <p class="text-sm text-slate-500" data-key="sec_3_d">穩健增值</p>
+                    </div>
+                    <div class="glass-panel p-8 rounded-2xl group hover:border-green-500 transition-colors guardian-card" data-aos="fade-up" data-aos-delay="300">
+                        <i class="fas fa-university text-5xl text-slate-500 group-hover:text-green-400 mb-6 transition-colors"></i>
+                        <h4 class="font-bold text-xl text-white mb-2" data-key="sec_4">資金安全</h4>
+                        <p class="text-sm text-slate-500" data-key="sec_4_d">穩如磐石</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="mt-24 px-6 pb-24 text-center" data-aos="fade-up">
+            <div class="max-w-5xl mx-auto glass-panel p-12 rounded-[3rem] relative overflow-hidden group">
+                 <div class="absolute top-0 right-0 w-64 h-64 bg-blue-500/10 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2"></div>
+                 <div class="absolute bottom-0 left-0 w-64 h-64 bg-purple-500/10 rounded-full blur-[80px] translate-y-1/2 -translate-x-1/2"></div>
+                 <div class="relative z-10 text-center">
+                     <div class="grid md:grid-cols-2 gap-12 mb-12">
+                         <div class="flex flex-col items-center">
+                             <div class="icon-radar-container"><div class="icon-radar-outer"></div><div class="icon-radar-inner"></div><i class="fas fa-search-dollar icon-radar-core"></i></div>
+                             <h3 class="text-2xl font-bold text-white mb-2" data-key="new_ad_t1">洞察市場</h3><p class="text-slate-400" data-key="new_ad_d1">精準分析趨勢</p>
+                         </div>
+                         <div class="flex flex-col items-center">
+                             <div class="icon-growth-container"><div class="icon-growth-outer"></div><i class="fas fa-chart-line icon-growth-core"></i></div>
+                             <h3 class="text-2xl font-bold text-white mb-2" data-key="new_ad_t2">穩定增長</h3><p class="text-slate-400" data-key="new_ad_d2">高效投資渠道</p>
+                         </div>
+                     </div>
+                     <div class="max-w-3xl mx-auto bg-slate-900/50 p-8 rounded-2xl border border-white/5 shadow-lg">
+                         <h4 class="text-xl font-bold text-green-400 mb-4 border-b border-green-500/30 pb-4 inline-block" data-key="new_ad_sub">貴金屬 CFDs靜安區</h4>
+                         <p class="text-slate-300 leading-relaxed text-lg" data-key="new_ad_txt">
+                             貴金屬CFDs是指標的物為實物商品的差價合約，主要包括倫敦金、倫敦銀等大類。投資者可通過保證金的方式，進行買入或者賣出商品合約，賺取漲跌差價。黃河控股營運團隊擁有十年豐富專業經驗，分析師提供專業市場建議，給您優秀的市場競爭性點差。
+                         </p>
+                     </div>
+                 </div>
+            </div>
+        </div>
+		<section class="py-32 text-center bg-[url('https://images.unsplash.com/photo-1639322537228-f710d846310a?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-fixed bg-center relative">
+            <div class="absolute inset-0 bg-black/80"></div>
+            <div class="container mx-auto px-6 relative z-10" data-aos="fade-up">
+                <h2 class="font-black text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-500 mb-6 slogan-text-pc" data-key="slogan_1">以專業洞察</h2>
+                <h2 class="font-black text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-teal-500 slogan-text-pc" data-key="slogan_2">帶你穿越市場波動</h2>
+                <button onclick="switchView('register')" class="mt-12 border border-white text-white px-12 py-4 rounded-full hover:bg-white hover:text-black transition-all font-bold tracking-widest text-lg" data-key="btn_join_us">加入我們</button>
+            </div>
+        </section>
+		<section class="py-20 bg-slate-900/40" data-aos="fade-up"> <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl font-bold mb-4 text-white" data-aos="fade-up" data-key="home_award_title">頂尖經紀商 · 榮獲全球殊榮</h2>
+                <p class="text-slate-400 mb-16 text-lg max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100" data-key="home_award_sub">專業實力深受業界肯定，是您值得信賴的交易夥伴。</p>
+                <div class="award-carousel-viewport relative"> 
+                    <div id="award-carousel-track" class="flex">
+    <div class="carousel-card-wrapper" data-index="0"><div class="award-card" data-aos="fade-up" data-aos-delay="0"><div class="award-icon-wrapper bg-yellow-500/20 mx-auto"><i class="fas fa-trophy text-3xl text-yellow-400" style="filter: drop-shadow(0 0 5px #facc15);"></i></div><p class="text-base award-title-text award-title-text-fixed" data-key="award_home_1">貴金屬投資最佳榮譽獎</p><div class="award-source-text" data-key="award_home_1_source">2020 FOLLOWME 年度評選</div></div></div>
+    <div class="carousel-card-wrapper" data-index="1"><div class="award-card" data-aos="fade-up" data-aos-delay="100"><div class="award-icon-wrapper bg-yellow-500/20 mx-auto"><i class="fas fa-medal text-3xl text-yellow-400" style="filter: drop-shadow(0 0 5px #facc15);"></i></div><p class="text-base award-title-text award-title-text-fixed" data-key="award_home_2">最受信賴貴金屬投資公司</p><div class="award-source-text" data-key="award_home_2_source">2019年度財經排行榜</div></div></div>
+    <div class="carousel-card-wrapper" data-index="2"><div class="award-card" data-aos="fade-up" data-aos-delay="200"><div class="award-icon-wrapper bg-yellow-500/20 mx-auto"><i class="fas fa-gavel text-3xl text-yellow-400" style="filter: drop-shadow(0 0 5px #facc15);"></i></div><p class="text-base award-title-text award-title-text-fixed" data-key="award_home_3">最佳財經及投資者關係金獎</p><div class="award-source-text" data-key="award_home_3_source">美國金橋商業創新活動</div></div></div>
+    <div class="carousel-card-wrapper" data-index="3"><div class="award-card" data-aos="fade-up" data-aos-delay="300"><div class="award-icon-wrapper bg-yellow-500/20 mx-auto"><i class="fas fa-award text-3xl text-yellow-400" style="filter: drop-shadow(0 0 5px #facc15);"></i></div><p class="text-base award-title-text award-title-text-fixed" data-key="award_home_4">最具營銷影響力黃金公司</p><div class="award-source-text" data-key="award_home_4_source">第17屆中國財經風雲榜</div></div></div>
+    <div class="carousel-card-wrapper" data-index="4"><div class="award-card" data-aos="fade-up" data-aos-delay="400"><div class="award-icon-wrapper bg-yellow-500/20 mx-auto"><i class="fas fa-mobile-alt text-3xl text-yellow-400" style="filter: drop-shadow(0 0 5px #facc15);"></i></div><p class="text-base award-title-text award-title-text-fixed" data-key="award_home_5">最佳移動端投資機構</p><div class="award-source-text" data-key="award_home_5_source">2019年度FX168經紀商風雲榜</div></div></div>
+    <div class="carousel-card-wrapper clone" data-index="5"><div class="award-card"><div class="award-icon-wrapper bg-yellow-500/20 mx-auto"><i class="fas fa-trophy text-3xl text-yellow-400"></i></div><p class="text-base award-title-text award-title-text-fixed" data-key="award_home_1">貴金屬投資最佳榮譽獎</p><div class="award-source-text" data-key="award_home_1_source">2020 FOLLOWME 年度評選</div></div></div>
+    <div class="carousel-card-wrapper clone" data-index="6"><div class="award-card"><div class="award-icon-wrapper bg-yellow-500/20 mx-auto"><i class="fas fa-medal text-3xl text-yellow-400"></i></div><p class="text-base award-title-text award-title-text-fixed" data-key="award_home_2">最受信賴貴金屬投資公司</p><div class="award-source-text" data-key="award_home_2_source">2019年度財經排行榜</div></div></div>
+    <div class="carousel-card-wrapper clone" data-index="7"><div class="award-card"><div class="award-icon-wrapper bg-yellow-500/20 mx-auto"><i class="fas fa-gavel text-3xl text-yellow-400"></i></div><p class="text-base award-title-text award-title-text-fixed" data-key="award_home_3">最佳財經及投資者關係金獎</p><div class="award-source-text" data-key="award_home_3_source">美國金橋商業創新活動</div></div></div>
+    <div class="carousel-card-wrapper clone" data-index="8"><div class="award-card"><div class="award-icon-wrapper bg-yellow-500/20 mx-auto"><i class="fas fa-award text-3xl text-yellow-400"></i></div><p class="text-base award-title-text award-title-text-fixed" data-key="award_home_4">最具營銷影響力黃金公司</p><div class="award-source-text" data-key="award_home_4_source">第17屆中國財經風雲榜</div></div></div>
+    <div class="carousel-card-wrapper clone" data-index="9"><div class="award-card"><div class="award-icon-wrapper bg-yellow-500/20 mx-auto"><i class="fas fa-mobile-alt text-3xl text-yellow-400"></i></div><p class="text-base award-title-text award-title-text-fixed" data-key="award_home_5">最佳移動端投資機構</p><div class="award-source-text" data-key="award_home_5_source">2019年度FX168經紀商風雲榜</div></div></div>
+</div></div></div></section></div>
+<div id="view-rules" class="view-section">
+        <div class="header-container header-energy text-center">
+            <div class="energy-beam"></div>
+            <div class="container mx-auto px-6 relative z-10" data-aos="zoom-out">
+                <h1 class="text-6xl font-black mb-6 text-white tracking-tight" data-key="rules_title" style="font-family: 'Cinzel', serif;">投資規則</h1>
+                <p class="text-xl text-slate-300 max-w-2xl mx-auto font-light" data-key="rules_sub">透明公正 · 倫敦金 (LLG) 及 倫敦銀 (LLS) · 全球同步報價</p>
+                <div class="mt-10 flex justify-center gap-6">
+                    <div class="px-6 py-3 bg-green-900/30 border border-green-500 rounded-lg text-green-400 font-bold animate-pulse">BULLISH ▲</div>
+                    <div class="px-6 py-3 bg-red-900/30 border border-red-500 rounded-lg text-red-400 font-bold animate-pulse" style="animation-delay: 0.5s">BEARISH ▼</div>
+                </div>
+            </div>
+        </div>
+        <div class="container mx-auto px-6 py-20">
+            <div class="glass-panel p-10 rounded-3xl mb-24 flex flex-col md:flex-row items-center justify-between bg-gradient-to-r from-green-900/20 to-transparent border-l-8 border-green-500" data-aos="fade-left">
+                <div class="md:w-2/3"><h3 class="text-3xl font-bold text-white mb-4" data-key="cfd_ad_title">貴金屬 CFDs 差價合約</h3><p class="text-slate-300 text-lg leading-relaxed" data-key="cfd_desc">黃河控股營運團隊擁有十年豐富專業經驗，分析師提供專業市場建議，給您優秀的市場競爭性點差。</p></div>
+                <div class="mt-8 md:mt-0"><button onclick="switchView('register')" class="btn-glow bg-white text-black px-10 py-4 rounded-full font-bold text-lg shadow-lg" data-key="btn_open_account">立即開戶</button></div>
+            </div>
+            <div class="grid md:grid-cols-2 sm:grid-cols-1 gap-12 mb-24"> 
+                <div class="glass-panel p-8 rounded-2xl" data-aos="fade-right">
+                    <h3 class="text-xl font-bold text-white mb-8"><i class="fas fa-layer-group text-green-400 mr-2"></i> <span data-key="rule_leverage_title">Leverage Advantage</span></h3>
+                    <div class="space-y-8">
+                        <div><div class="flex justify-between text-sm text-slate-400 mb-2"><span data-key="rule_gr_platform">Golden River</span> <span class="text-green-400 font-bold">1:500</span></div><div class="w-full bg-slate-700 h-4 rounded-full overflow-hidden"><div id="bar-green" class="bar-fill bg-green-500" style="width: 0%"></div></div></div>
+                        <div><div class="flex justify-between text-sm text-slate-400 mb-2"><span data-key="rule_retail_bank">Retail Bank</span> <span>1:10</span></div><div class="w-full bg-slate-700 h-4 rounded-full overflow-hidden"><div id="bar-gray" class="bar-fill bg-slate-500" style="width: 0%"></div></div></div>
+                        <p class="text-sm text-slate-500 mt-4 leading-relaxed" data-key="lev_desc">小資金，大能量。運用高槓桿放大您的投資回報，靈活配置資產。</p>
+                    </div>
+                </div>
+                <div class="glass-panel p-8 rounded-2xl" data-aos="fade-left">
+                    <h3 class="text-xl font-bold text-white mb-8"><i class="fas fa-clock text-blue-400 mr-2"></i> <span data-key="rule_trading_hours_title">Trading Hours</span></h3>
+                    <div class="flex items-center gap-6 mb-6">
+                        <div class="orbit-container"><div class="orbit-ring"></div><div class="orbit-ring-inner"></div><div class="orbit-text">24h</div></div>
+                        <div><h4 class="text-white font-bold text-lg" data-key="trade_24">全天候交易</h4><p class="text-sm text-slate-400" data-key="trade_24_d">T+0 雙向交易，隨時買賣</p></div>
+                    </div>
+                    <ul class="text-sm text-slate-300 space-y-3">
+                        <li class="border-b border-white/5 pb-2"><span class="text-blue-400 font-bold" data-key="rule_summer_time">Summer Time:</span> <span data-key="rule_summer_time_content">週一 06:00 - 週六 04:45</span></li>
+                        <li><span class="text-blue-400 font-bold" data-key="rule_winter_time">Winter Time:</span> <span data-key="rule_winter_time_content">週一 07:00 - 週六 05:45</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="glass-panel rounded-2xl overflow-hidden mb-24" data-aos="fade-up">
+                <div class="p-6 bg-white/5 border-b border-white/10 flex justify-between items-center">
+                    <h3 class="text-xl font-bold text-green-400" data-key="tbl_title">合約細則一覽表</h3>
+                    <span class="text-xs text-slate-500 blink" data-key="tbl_hint"><i class="fas fa-arrows-alt-h"></i> 向左滑動查看更多</span>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="tech-table w-full text-sm md:text-base">
+                        <thead>
+                            <tr>
+                                <th width="25%" data-key="tbl_item">項目</th>
+                                <th width="37.5%" data-key="tbl_llg">倫敦金 (LLG)</th>
+                                <th width="37.5%" data-key="tbl_lls">倫敦銀 (LLS)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td colspan="3" class="table-sub-header" data-key="rule_median_spread">Median Spread</td></tr>
+                            <tr><td class="pl-6" data-key="rule_mini">Mini</td><td data-key="rule_llg_mini_spread">0.5 (固定)</td><td data-key="rule_lls_mini_spread">0.04 (固定)</td></tr>
+                            <tr><td class="pl-6" data-key="rule_standard">Standard</td><td data-key="rule_llg_std_spread">0.5 (固定)</td><td data-key="rule_lls_std_spread">0.04 (固定)</td></tr>
+                            <tr><td class="pl-6" data-key="rule_gold">Gold</td><td data-key="rule_llg_gold_spread">0.5 (固定)</td><td data-key="rule_lls_gold_spread">0.04 (固定)</td></tr>
+                            <tr><td class="pl-6" data-key="rule_diamond">Diamond</td><td data-key="rule_llg_dia_spread">0.5 (固定)</td><td data-key="rule_lls_dia_spread">0.04 (固定)</td></tr>
+                            <tr><td colspan="3" class="table-sub-header" data-key="rule_swap_title">Swap/Overnight Interest</td></tr>
+                            <tr><td class="pl-6" data-key="rule_buy">Buy</td><td>-1.50%</td><td>-1.50%</td></tr>
+                            <tr><td class="pl-6" data-key="rule_sell">Sell</td><td>-0.5%</td><td>-0.5%</td></tr>
+                            <tr><td class="font-bold text-white" data-key="rule_leverage_tier">層級 / 槓桿</td><td data-key="rule_llg_tier">5.01-60手: 125倍 ($1000)<br>60.01-180手: 50倍 ($2500)<br>180.01+手: 30倍 ($4000)</td><td data-key="rule_lls_tier">0.01-2手: 500倍 ($200)<br>2.01-5手: 245倍 ($500)</td></tr>
+                            <tr><td class="font-bold text-white" data-key="rule_unit">合約單位</td><td class="text-green-400" data-key="rule_llg_unit">100 盎司</td><td class="text-green-400" data-key="rule_lls_unit">5000 盎司</td></tr>
+                            <tr><td class="font-bold text-white" data-key="rule_single_limit">單筆限制</td><td data-key="rule_llg_limit">0.01-30 手</td><td data-key="rule_lls_limit">0.01-30 手</td></tr>
+                            <tr><td class="font-bold text-white" data-key="rule_liquidation">強制平倉</td><td class="text-red-400 font-bold">20%</td><td class="text-red-400 font-bold">20%</td></tr>
+                            <tr><td class="font-bold text-white" data-key="rule_holiday_liq">假期強平</td><td>100%</td><td>100%</td></tr>
+                            <tr><td class="font-bold text-white" data-key="rule_hedge_margin">鎖倉保證金</td><td>50%</td><td>50%</td></tr>
+                            <tr><td class="font-bold text-white" data-key="rule_break_time">休市時間</td><td colspan="2" data-key="rule_break_time_content">夏令：週二至週五 05:00-06:00<br>冬令：週二至週五 06:00-07:00</td></tr>
+                            <tr><td class="font-bold text-white" data-key="rule_margin_raise_time">休市前提高保證金</td><td colspan="2" data-key="rule_margin_raise_time_content">夏令：週六 04:15<br>冬令：週六 05:15</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="grid md:grid-cols-2 sm:grid-cols-1 gap-12" data-aos="fade-up"> <div class="glass-panel p-10 rounded-2xl border-l-4 border-green-500">
+                    <h3 class="text-2xl font-bold mb-6 text-white" data-key="calc_title">盈虧計算公式</h3>
+                    <p class="text-slate-400 mb-6 text-lg" data-key="calc_desc">掌握財富密碼，精算每一分收益。</p>
+                    <div class="bg-black/40 p-6 rounded-xl font-mono text-base mb-4 leading-loose text-green-300"><span data-key="calc_formula">總盈虧 = (平倉價 - 開倉價) x 合約單位 x 手數 ± 過夜利息 – 佣金</span></div>
+                    <p class="text-xs text-slate-500" data-key="calc_note">注意：即日平倉，無須支付過夜利息，實際過夜利息以平台顯示為準。</p>
+                </div>
+                <div class="glass-panel p-10 rounded-2xl relative overflow-hidden">
+                    <h3 class="text-2xl font-bold mb-6 text-green-400" data-key="ex_title">實例分析</h3>
+                    <div class="space-y-4 text-lg">
+                        <p class="text-slate-300" data-key="ex_desc">假設您認為倫敦金(LLG)會從 1740 上漲至 1745，買入 1手。</p>
+                        <div class="flex items-center gap-4 mt-6 p-4 bg-green-900/20 rounded-xl border border-green-500/30">
+                            <i class="fas fa-chart-line text-4xl text-green-500"></i>
+                            <div><div class="text-sm text-slate-500">Profit</div><div class="text-2xl font-bold text-white"><span data-key="profit">收益</span> = <span class="text-green-400">$500 USD</span></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	<div id="view-accounts" class="view-section">
+        <div class="header-container header-gold text-center">
+             <div id="gold-canvas-container"></div>
+            <div class="container mx-auto px-6 relative z-10" data-aos="fade-down">
+                <h1 class="text-6xl font-black mb-6 text-white" data-key="acc_title">賬戶專業分層</h1>
+                <p class="text-2xl text-yellow-500 font-bold" data-key="acc_sub">量身定制的權益和福利 · 滿足不同階段的投資者</p>
+                <div class="mt-10 flex justify-center gap-8">
+                    <div class="text-slate-400 text-sm"><i class="fas fa-check text-yellow-500"></i> <span data-key="acc_low_spread">低點差</span></div>
+                    <div class="text-slate-400 text-sm"><i class="fas fa-check text-yellow-500"></i> <span data-key="acc_high_rebate">高回贈</span></div>
+                    <div class="text-slate-400 text-sm"><i class="fas fa-check text-yellow-500"></i> <span data-key="acc_exclusive_manager">專屬經理</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="container mx-auto px-6 py-24">
+            <div class="mb-32" data-aos="fade-up">
+                <h3 class="text-center text-3xl font-bold text-white mb-20" data-key="level_title">您的財富進階之路</h3>
+                <div class="flex flex-col md:flex-row justify-center items-center gap-10 lg:gap-16 relative py-10">
+                    <div class="hidden md:block absolute top-1/2 left-[10%] right-[10%] h-[1px] bg-gradient-to-r from-slate-700 via-blue-900 to-purple-900 -z-10 transform -translate-y-1/2"></div>
+                    <div class="planet-node node-mini w-32 h-32 md:w-36 md:h-36 float-bubble" style="animation-delay: 0s" data-aos="zoom-in" data-aos-delay="0"><div class="planet-ring" style="width: 140%; height: 140%;"></div><div class="planet-core"><i class="fas fa-seedling text-2xl text-slate-400 mb-1"></i><strong class="text-lg text-white" data-key="acc_mini">迷你</strong></div></div>
+                    <div class="planet-node node-std w-36 h-36 md:w-40 md:h-40 float-bubble" style="animation-delay: 0.5s" data-aos="zoom-in" data-aos-delay="150"><div class="planet-ring" style="width: 140%; height: 140%;"></div><div class="planet-ring-2"></div><div class="planet-core"><i class="fas fa-layer-group text-2xl text-blue-400 mb-1"></i><strong class="text-lg text-white" data-key="acc_std">標準</strong></div></div>
+                    <div class="planet-node node-gold w-44 h-44 md:w-52 md:h-52 transform md:-translate-y-4 float-bubble" style="animation-delay: 1s" data-aos="zoom-in" data-aos-delay="300"><div class="absolute -inset-4 bg-yellow-500/10 rounded-full blur-xl"></div><div class="planet-ring" style="width: 150%; height: 150%;"></div><div class="planet-ring-2" style="animation-duration: 12s;"></div><div class="planet-core"><i class="fas fa-crown text-4xl text-yellow-400 mb-2"></i><strong class="text-2xl text-white" data-key="acc_gold">黃金</strong><span class="text-xs text-yellow-500 font-bold mt-1 tracking-widest">POPULAR</span></div></div>
+                    <div class="planet-node node-dia w-36 h-36 md:w-40 md:h-40 float-bubble" style="animation-delay: 1.5s" data-aos="zoom-in" data-aos-delay="450"><div class="planet-ring" style="width: 140%; height: 140%;"></div><div class="planet-ring-2"></div><div class="planet-core"><i class="fas fa-gem text-2xl text-purple-400 mb-1"></i><strong class="text-lg text-white" data-key="acc_dia">鑽石</strong></div></div>
+                </div>
+            </div>
+            <div class="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 gap-8 mb-32"> <div class="glass-panel p-8 rounded-2xl border-t-4 border-slate-500 hover:scale-105 transition-transform" data-aos="fade-up" data-aos-delay="0"><h3 class="text-2xl font-bold text-slate-300 mb-2" data-key="acc_mini">迷你賬戶</h3><p class="text-xs text-slate-500 mb-6 h-8" data-key="acc_mini_d">適合投資初學者</p><div class="text-5xl font-black mb-2 text-white">$100</div><div class="text-xs text-slate-500 mb-8" data-key="acc_min_dep">最低入金</div><ul class="text-sm space-y-4 mb-8 text-slate-400"><li><i class="fas fa-check text-green-500 mr-2"></i> <span data-key="acc_feat_1">免費專家指導</span></li><li><i class="fas fa-check text-green-500 mr-2"></i> <span data-key="acc_feat_2">最小下單 0.01手</span></li><li><i class="fas fa-check text-green-500 mr-2"></i> <span data-key="acc_feat_3">固定50倍槓桿</span></li></ul><button onclick="switchView('register')" class="w-full py-3 bg-slate-800 rounded text-white font-bold hover:bg-slate-700 transition-colors" data-key="btn_select">選擇</button></div>
+                <div class="glass-panel p-8 rounded-2xl border-t-4 border-blue-500 hover:scale-105 transition-transform" data-aos="fade-up" data-aos-delay="100"><h3 class="text-2xl font-bold text-blue-400 mb-2" data-key="acc_std">標準賬戶</h3><p class="text-xs text-slate-500 mb-6 h-8" data-key="acc_std_d">適合低風險投資者</p><div class="text-5xl font-black mb-2 text-white">$100</div><div class="text-xs text-slate-500 mb-8" data-key="acc_min_dep">最低入金</div><ul class="text-sm space-y-4 mb-8 text-slate-400"><li><i class="fas fa-check text-green-500 mr-2"></i> <span data-key="acc_feat_4">包含迷你所有功能</span></li><li><i class="fas fa-check text-green-500 mr-2"></i> <span data-key="acc_feat_5">投資建議支持</span></li></ul><button onclick="switchView('register')" class="w-full py-3 bg-blue-600 rounded text-white font-bold hover:bg-blue-500 transition-colors" data-key="btn_select">選擇</button></div>
+                <div class="glass-panel p-8 rounded-2xl border-t-4 border-yellow-500 hover:scale-105 transition-transform relative z-10" data-aos="fade-up" data-aos-delay="200"><div class="absolute top-0 right-0 bg-yellow-500 text-black text-xs font-bold px-3 py-1 rounded-bl">HOT</div><h3 class="text-2xl font-bold text-yellow-400 mb-2" data-key="acc_gold">黃金賬戶</h3><p class="text-xs text-slate-500 mb-6 h-8" data-key="acc_gold_d">適合投資頻密者</p><div class="text-5xl font-black mb-2 text-white">$100</div><div class="text-xs text-slate-500 mb-8" data-key="acc_min_dep">最低入金</div><ul class="text-sm space-y-4 mb-8 text-slate-300"><li class="text-white font-bold"><i class="fas fa-star text-yellow-500 mr-2"></i> <span data-key="acc_feat_6">成本直降 45%</span></li><li><i class="fas fa-check text-green-500 mr-2"></i> <span data-key="acc_feat_7">享受點差回饋</span></li><li><i class="fas fa-check text-green-500 mr-2"></i> <span data-key="acc_feat_8">專享個性化服務</span></li></ul><button onclick="switchView('register')" class="w-full py-3 bg-gradient-to-r from-yellow-500 to-orange-500 rounded text-black font-bold btn-glow" data-key="btn_upgrade_now">立即升級</button></div>
+                <div class="glass-panel p-8 rounded-2xl border-t-4 border-purple-500 hover:scale-105 transition-transform" data-aos="fade-up" data-aos-delay="300"><h3 class="text-2xl font-bold text-purple-400 mb-2" data-key="acc_dia">鑽石賬戶</h3><p class="text-xs text-slate-500 mb-6 h-8" data-key="acc_dia_d">適合資金充足者</p><div class="text-5xl font-black mb-2 text-white">$100</div><div class="text-xs text-slate-500 mb-8" data-key="acc_min_dep">最低入金</div><ul class="text-sm space-y-4 mb-8 text-slate-400"><li class="text-white font-bold"><i class="fas fa-gem text-purple-500 mr-2"></i> <span data-key="acc_feat_9">成本直降 70%</span></li><li><i class="fas fa-check text-green-500 mr-2"></i> <span data-key="acc_feat_10">最優惠點差回贈</span></li><li><i class="fas fa-check text-green-500 mr-2"></i> <span data-key="acc_feat_11">專屬賬戶經理</span></li></ul><button onclick="switchView('register')" class="w-full py-3 bg-purple-600 rounded text-white font-bold hover:bg-purple-500 transition-colors" data-key="btn_vip">尊享鑽石</button></div>
+            </div>
+            <div class="glass-panel p-12 rounded-[3rem]" data-aos="fade-up">
+                <div class="grid lg:grid-cols-2 md:grid-cols-1 gap-16"> <div>
+                        <h3 class="text-3xl font-bold mb-8 text-green-400 border-b border-white/10 pb-4"><i class="fas fa-arrow-circle-up mr-2"></i> <span data-key="rule_up_title">賬戶升級攻略</span></h3>
+                        <div class="space-y-8">
+                            <div class="relative pl-8 border-l-2 border-slate-600 hover:pl-10 transition-all"><h4 class="font-bold text-white text-xl" data-key="up_path_1">迷你 ➜ 標準</h4><p class="text-sm text-slate-400 mt-2" data-key="up_desc_1">視用戶自身風險管控，可主動升級標準賬戶。</p></div>
+                            <div class="relative pl-8 border-l-2 border-yellow-500 hover:pl-10 transition-all"><h4 class="font-bold text-yellow-400 text-xl" data-key="up_path_2">標準 ➜ 黃金</h4><div class="text-sm text-slate-300 mt-2 space-y-2"><p class="bg-white/5 p-3 rounded"><span data-key="user_new">新用戶：</span> <span data-key="gold_req_new">首充 $3,000 或 當月淨充值 $3,000。</span></p><p class="bg-white/5 p-3 rounded"><span data-key="user_old">老用戶：</span> <span data-key="gold_req_old">月結淨充值 $3,000 或 上月100手。</span></p></div></div>
+                            <div class="relative pl-8 border-l-2 border-purple-500 hover:pl-10 transition-all"><h4 class="font-bold text-purple-400 text-xl" data-key="up_path_3">黃金 ➜ 鑽石</h4><div class="text-sm text-slate-300 mt-2 space-y-2"><p class="bg-white/5 p-3 rounded"><span data-key="user_new">新用戶：</span> <span data-key="dia_req_new">首充 $15,000 或 當月淨充值 $15,000。</span></p><p class="bg-white/5 p-3 rounded"><span data-key="user_old">老用戶：</span> <span data-key="dia_req_old">月結淨充值 $15,000 或 上月200手。</span></p></div></div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-3xl font-bold mb-8 text-red-400 border-b border-white/10 pb-4"><i class="fas fa-arrow-circle-down mr-2"></i> <span data-key="rule_down_title">降級規則與注意事項</span></h3>
+                        <div class="mb-10 p-8 bg-red-900/10 rounded-3xl border border-red-500/20">
+                             <p class="text-slate-200 mb-6 font-bold text-lg" data-key="validity_text">等級有效期：每月統計並調整1次。若賬戶為非活躍狀態且淨值未達標，將自動降級。</p>
+                             <ul class="space-y-4 text-sm text-slate-400">
+                                 <li class="flex items-start gap-4"><i class="fas fa-exclamation-triangle text-red-500 mt-1 text-lg"></i> <div data-key="down_rule_1"><strong>鑽石 ➜ 黃金：</strong> 賬戶非活躍 且 淨值未達 $3,000。</div></li>
+                                 <li class="flex items-start gap-4"><i class="fas fa-exclamation-triangle text-red-500 mt-1 text-lg"></i> <div data-key="down_rule_2"><strong>黃金 ➜ 標準：：</strong> 賬戶非活躍 且 淨值未達 $15,000。</div></li>
+                             </ul>
+                        </div>
+                        <div class="bg-white/5 p-8 rounded-3xl border border-white/10">
+                            <h5 class="font-bold text-white mb-4 text-lg" data-key="def_title">名詞定義</h5>
+                            <ul class="text-sm text-slate-400 space-y-3">
+                                <li data-key="def_1">• <strong>賬戶活躍狀態：：</strong> 當月賬戶有存款、開倉、平倉任一筆記錄。</li>
+                                <li data-key="def_2">• <strong>手數定義：：：：</strong> 客戶開倉1手，然後再行平倉1手，則整個來回算1手。</li>
+                                <li data-key="def_3">• <strong>特殊情況：：：：：：</strong> 在有掛單和持倉的情況下，賬戶不支持升降級。
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="view-download" class="view-section">
+        <div class="header-container header-download text-center">
+            <canvas id="download-canvas"></canvas>
+            
+            <div class="container mx-auto px-6 relative z-10" data-aos="fade-up">
+                <h1 class="text-6xl font-black mb-6 text-white" data-key="dl_title">下載中心</h1>
+                <p class="text-2xl text-slate-400" data-key="dl_sub">隨時隨地 · 掌握獲利機會 · IOS / Android</p>
+                <div class="mt-8 flex justify-center gap-4"><i class="fab fa-apple text-4xl text-white"></i><i class="fab fa-android text-4xl text-green-500"></i><i class="fas fa-desktop text-4xl text-blue-500"></i></div>
+            </div>
+        </div>
+		<div class="container mx-auto px-6 py-24">
+            <div class="grid md:grid-cols-4 sm:grid-cols-2 gap-8 mb-32"> <div class="download-step p-10 rounded-3xl text-center group" data-aos="fade-up" data-aos-delay="0"><div class="step-number-container"><div class="step-number-ring"></div><div class="text-7xl font-black mb-6 relative z-10 text-green-400 transition-colors">01</div></div><h3 class="text-2xl font-bold text-green-400 mb-2" data-key="step_1">下載</h3><p class="text-sm text-slate-400" data-key="step_1_d">黃河控股APP創新智能，掌握財富。</p></div>
+                <div class="download-step p-10 rounded-3xl text-center group" data-aos="fade-up" data-aos-delay="100"><div class="step-number-container"><div class="step-number-ring"></div><div class="text-7xl font-black mb-6 relative z-10 text-blue-400 transition-colors">02</div></div><h3 class="text-2xl font-bold text-blue-400 mb-2" data-key="step_2">註冊</h3><p class="text-sm text-slate-400" data-key="step_2_d">僅需30秒，暢享開戶便利。</p></div>
+                <div class="download-step p-10 rounded-3xl text-center group" data-aos="fade-up" data-aos-delay="200"><div class="step-number-container"><div class="step-number-ring"></div><div class="text-7xl font-black mb-6 relative z-10 text-yellow-400 transition-colors">03</div></div><h3 class="text-2xl font-bold text-yellow-400 mb-2" data-key="step_3">激活</h3><p class="text-sm text-slate-400" data-key="step_3_d">低門檻起航，資金及時到賬。</p></div>
+                <div class="download-step p-10 rounded-3xl text-center group" data-aos="fade-up" data-aos-delay="300"><div class="step-number-container"><div class="step-number-ring"></div><div class="text-7xl font-black mb-6 relative z-10 text-purple-400 transition-colors">04</div></div><h3 class="text-2xl font-bold text-purple-400 mb-2" data-key="step_4">實行</h3><p class="text-sm text-slate-400" data-key="step_4_d">0.06秒快速下單，瞬間成交。</p></div>
+            </div>
+            <div class="grid md:grid-cols-2 sm:grid-cols-1 gap-16 items-center"> <div data-aos="fade-right"><h2 class="text-5xl font-black mb-8" data-key="app_feat_title">暢享一站式投資體驗</h2><p class="text-slate-400 mb-10 leading-loose text-lg" data-key="app_feat_desc">黃河控股APP為您帶來獨特的投資視角，深度洞察世界的前沿，搶先獲取投資見解，盡在我們的新聞資訊。<br><br>✔ 68種技術指標<br>✔ 精準止盈止損掛單<br>✔ 閃電下單 0.06s</p><div class="flex flex-col sm:flex-row gap-6 mb-12"><button class="flex items-center gap-4 bg-white text-black px-8 py-4 rounded-2xl hover:scale-105 transition-transform shadow-lg"><i class="fab fa-apple text-4xl"></i><div class="text-left leading-none"><div class="text-xs opacity-60 font-bold mb-1">Download on</div><div class="text-2xl font-bold">App Store</div></div></button><button class="flex items-center gap-4 border border-white/30 text-white px-8 py-4 rounded-2xl hover:bg-white/10 transition-colors"><i class="fab fa-android text-4xl text-green-500"></i><div class="text-left leading-none"><div class="text-xs opacity-60 font-bold mb-1">Get it on</div><div class="text-2xl font-bold">Google Play</div></div></button></div></div>
+                <div class="glass-panel p-12 rounded-[3rem]" data-aos="fade-left"><h4 class="font-bold text-white mb-8 text-2xl border-b border-white/10 pb-4" data-key="comp_title">註冊真實賬戶福利對比</h4><div class="flex justify-between items-center mb-6"><span class="text-slate-400 text-lg"></span><div class="flex gap-8"><span class="text-green-400 font-bold text-center text-lg comp-col-width" data-key="gr_platform">黃河控股</span><span class="text-slate-600 font-bold text-center text-lg comp-col-width" data-key="other_platform">其它交易平台</span></div></div><div class="space-y-8"><div class="flex justify-between items-center"><span class="text-slate-400 text-lg" data-key="comp_1">VIP待遇</span><div class="flex gap-8"><span class="text-green-400 font-bold text-center text-lg comp-col-width"><i class="fas fa-check-circle"></i> YES</span><span class="text-slate-600 text-center text-lg comp-col-width"><i class="fas fa-times-circle"></i> NO</span></div></div><div class="flex justify-between items-center"><span class="text-slate-400 text-lg" data-key="comp_2">註冊流程</span><div class="flex gap-8"><span class="text-green-400 font-bold text-center text-lg comp-col-width" data-key="fast">快速</span><span class="text-slate-600 text-center text-lg comp-col-width" data-key="slow">繁瑣</span></div></div><div class="flex justify-between items-center"><span class="text-slate-400 text-lg" data-key="comp_3">尊貴特權</span><div class="flex gap-8"><span class="text-green-400 font-bold text-center text-lg comp-col-width"><i class="fas fa-check-circle"></i> YES</span><span class="text-slate-600 text-center text-lg comp-col-width"><i class="fas fa-times-circle"></i> NO</span></div></div></div></div>
+            </div>
+            <section class="py-16 bg-slate-900/40 rounded-[3rem] p-12 mt-20 relative overflow-hidden" data-aos="zoom-in">
+                <div class="absolute inset-0 opacity-20 pointer-events-none"><div class="w-1/2 h-full bg-green-500/10 absolute left-0 top-0 blur-3xl transform skew-x-[-15deg]"></div><div class="w-1/2 h-full bg-blue-500/10 absolute right-0 top-0 blur-3xl transform skew-x-[15deg]"></div></div>
+                <div class="max-w-6xl mx-auto text-center relative z-10 mb-12"><h2 class="text-5xl font-black text-white" data-key="adv_focus_main_title">掌握速度與精準 黃河交易引擎</h2><p class="text-xl text-green-400 mt-3" data-key="adv_focus_main_sub">毫秒級決策，為您的財富保駕護航</p></div>
+                <div class="grid lg:grid-cols-2 md:grid-cols-1 gap-12 relative z-10"> <div class="space-y-6 left-panel-grid pr-6"><h3 class="text-3xl font-bold text-green-400 mb-6 border-b border-green-500/30 pb-3" data-key="adv_speed_title">極速效率與智能工具</h3><div class="flex items-start focus-feature-card group bg-green-900/20 hover:bg-green-900/40" data-aos="fade-right" data-aos-delay="0"><div class="feature-icon-wrapper bg-green-500/20"><i class="fas fa-bolt text-xl text-green-400 icon-pulse"></i></div><div><h4 class="text-xl font-bold text-white mb-1" data-key="adv_open_title">極速開戶 (30秒完成)</h4><p class="text-slate-400 text-sm" data-key="adv_open_slogan">簡化流程，只需簡單幾步，瞬間掌握您的專屬投資賬戶。</p></div></div><div class="flex items-start focus-feature-card group bg-blue-900/20 hover:bg-blue-900/40" data-aos="fade-right" data-aos-delay="100"><div class="feature-icon-wrapper bg-blue-500/20"><i class="fas fa-terminal text-xl text-blue-400 icon-pulse" style="animation-delay: 0.5s;"></i></div><div><h4 class="text-xl font-bold text-white mb-1" data-key="adv_flash_title">閃電成交 (0.06秒)</h4><p class="text-slate-400 text-sm" data-key="adv_flash_slogan">專利撮合技術，毫秒級響應速度，讓您在市場波動中快人一步，抓住轉瞬即逝的機會。</p></div></div><div class="flex items-start focus-feature-card group bg-purple-900/20 hover:bg-purple-900/40" data-aos="fade-right" data-aos-delay="200"><div class="feature-icon-wrapper bg-purple-500/20"><i class="fas fa-chart-line text-xl text-purple-400 icon-pulse" style="animation-delay: 1s;"></i></div><div><h4 class="text-xl font-bold text-white mb-1" data-key="adv_indicators_title">專業多樣指標 (68種+)</h4><p class="text-slate-400 text-sm" data-key="adv_indicators_slogan">提供超過68種內建技術指標，助您進行深度分析，優化複雜的交易策略。</p></div></div></div>
+                    <div class="space-y-6 lg:pl-6"><h3 class="text-3xl font-bold text-red-400 mb-6 border-b border-red-500/30 pb-3" data-key="adv_control_title">智能風控與市場洞察</h3><div class="focus-feature-card p-6 rounded-2xl border-l-4 border-red-400/80 bg-red-900/20 hover:shadow-2xl hover:shadow-red-500/20" data-aos="fade-left" data-aos-delay="0"><div class="flex items-start mb-2"><div class="feature-icon-wrapper bg-red-500/20"><i class="fas fa-shield-alt text-xl text-red-400"></i></div><div><h4 class="text-xl font-bold text-white" data-key="focus_profit_title">鎖定利潤 & 精準風控</h4></div></div><p class="text-slate-300 leading-relaxed text-sm" data-key="focus_profit_slogan">透過**精準止盈止損掛單**，將潛在風險限制在最小範圍，確保您的收益不會被突發波動侵蝕。</p></div><div class="focus-feature-card p-6 rounded-2xl border-l-4 border-yellow-400/80 bg-yellow-900/20 hover:shadow-2xl hover:shadow-yellow-500/20" data-aos="fade-left" data-aos-delay="100"><div class="flex items-start mb-2"><div class="feature-icon-wrapper bg-yellow-500/20"><i class="fas fa-bell text-xl text-yellow-400"></i></div><div><h4 class="text-xl font-bold text-white" data-key="focus_news_title">新聞快訊透視市場</h4></div></div><p class="text-slate-300 leading-relaxed text-sm" data-key="focus_news_slogan">實時推送最新市場新聞與分析，提供關鍵的洞察力，幫助您在複雜的市場中做出明智的投資決策。</p></div><div class="text-center pt-8" data-aos="fade-up" data-aos-delay="200"><button onclick="switchView('register')" class="btn-glow bg-gradient-to-r from-green-500 to-teal-500 text-black font-bold px-8 py-3 rounded-full text-lg shadow-lg" data-key="btn_join_us_focus">立即加入，開啟智能交易</button></div></div></div>
+            </section>
+            </div>
+    </div>
+	<div id="view-advantages" class="view-section">
+	<div class="header-container header-meteor text-center"><div id="stars-container"></div><div class="container mx-auto px-6 relative z-10" data-aos="fade-up"><h1 class="text-6xl font-black mb-6 text-white" data-key="adv_title">天時地利 <br> 恆星閃耀</h1><p class="text-2xl text-slate-400" data-key="adv_sub">我們的目標是您的成功，您的滿意是我們最大的動力</p></div></div>
+        <div class="container mx-auto px-6 py-20">
+            <div class="grid md:grid-cols-3 sm:grid-cols-1 gap-12 mb-24"> <div class="adv-card-wrapper" data-aos="fade-up" data-aos-delay="0" style="--ring-color: #4ade80;"><div class="adv-card-3d"><div class="adv-icon-ring flex items-center justify-center"><i class="fas fa-wallet text-5xl text-green-400"></i></div><h3 class="font-bold text-2xl mb-4 text-white" data-key="adv_fund">快捷資金操作</h3><p class="text-slate-400 leading-relaxed text-sm" data-key="adv_fund_d">支持多種支付方式，2小時取款到賬；資金隔離存管，按照相關監管法規進行合規管理。</p></div></div><div class="adv-card-wrapper" data-aos="fade-up" data-aos-delay="100" style="--ring-color: #3b82f6;"><div class="adv-card-3d"><div class="adv-icon-ring flex items-center justify-center"><i class="fas fa-user-lock text-5xl text-blue-400"></i></div><h3 class="font-bold text-2xl mb-4 text-white" data-key="adv_enc">信息加密保護</h3><p class="text-slate-400 leading-relaxed text-sm" data-key="adv_enc_d">採用SSL加密技術加密保護，並設有嚴格的安全系統，未經授權任何人無法獲取用戶信息。</p></div></div><div class="adv-card-wrapper" data-aos="fade-up" data-aos-delay="200" style="--ring-color: #f59e0b;"><div class="adv-card-3d"><div class="adv-icon-ring flex items-center justify-center"><i class="fas fa-gavel text-5xl text-yellow-400"></i></div><h3 class="font-bold text-2xl mb-4 text-white" data-key="adv_reg">遵循嚴格監管</h3><p class="text-slate-400 leading-relaxed text-sm" data-key="adv_reg_d">我們受到嚴格的監管以保護您的權益，香港黃金交易所監管，行員號196。</p></div></div></div>
+            <section class="mb-24" data-aos="fade-up">
+                <div class="trust-shield-block p-12 md:p-16"><div class="grid lg:grid-cols-2 md:grid-cols-1 gap-12 items-center"> <div class="border-b pb-8 lg:border-b-0 lg:border-r lg:pr-12 border-slate-700/50"><div class="data-globe-container"><div class="globe-orbit globe-orbit-1"></div><div class="globe-orbit globe-orbit-2"></div><div class="globe-core"><i class="fas fa-database"></i></div><div class="data-stream" style="animation-delay: 0s;"></div><div class="data-stream" style="animation-delay: 1.5s; transform: translate(60px, 0) rotateZ(180deg);"></div></div><h3 class="text-4xl font-black mb-4 text-green-400 text-center" data-key="trust_team_title">數據驅動，精準護航</h3><p class="text-slate-300 leading-loose text-lg text-center" data-key="trust_team_desc">我們經驗豐富的**專業分析師團隊**，利用先進數據模型，提供精準的投資見解，助您在瞬息萬變的市場中把握致勝先機。</p></div><div class="lg:pl-6"><div class="reg-badge-card transform-gpu" data-aos="zoom-in" data-aos-delay="100"><div class="reg-badge-icon"><i class="fa-etch fa-solid fa-arrow-up-right-from-square text-4xl text-white"></i></div><h3 class="text-2xl font-black mb-2 text-white reg-title" data-key="trust_reg_title">權威認可，信賴基石</h3><p class="text-slate-300 leading-relaxed text-sm mb-6" data-key="trust_reg_desc">黃河控股榮獲**香港黃金交易所 (CGSE)** 認可，行員編號 196。<br>這代表我們在資金安全和透明度方面，符合業界最嚴格的標準。</p><button onclick="switchView('register')" class="btn-glow mt-4 bg-blue-600 text-white px-10 py-3 rounded-full font-bold hover:bg-blue-500 transition-colors" data-key="btn_select_gr">選擇黃河，開啟成功</button></div></div></div></div>
+            </section>
+            <div class="glass-panel p-16 rounded-[3rem] text-center mb-24" data-aos="zoom-in">
+                <h3 class="text-4xl font-bold mb-12 text-white" data-key="award_title">榮譽獲獎</h3>
+                <p class="text-slate-400 mb-16 text-xl" data-key="award_desc">黃河控股營運團隊屢獲殊榮 · 成就傳奇</p>
+                <div class="grid grid-cols-2 md:grid-cols-4 sm:grid-cols-2 gap-8"> <div class="award-3d-card-wrapper" data-aos="fade-up" data-aos-delay="0" data-color="green"><div class="award-card-inner"><div class="award-icon-container award-icon-float"><i class="fas fa-trophy"></i></div><h3 class="text-xl font-bold mb-2" data-key="award_1">最佳交易平台</h3><p class="text-sm text-slate-400">Best Trading Platform</p></div></div><div class="award-3d-card-wrapper" data-aos="fade-up" data-aos-delay="100" data-color="blue"><div class="award-card-inner"><div class="award-icon-container award-icon-float" style="animation-delay: 0.5s;"><i class="fas fa-medal"></i></div><h3 class="text-xl font-bold mb-2" data-key="award_2">亞洲最具影響力品牌</h3><p class="text-sm text-slate-400">Most Influential Brand in Asia</p></div></div><div class="award-3d-card-wrapper" data-aos="fade-up" data-aos-delay="200" data-color="yellow"><div class="award-card-inner"><div class="award-icon-container award-icon-float" style="animation-delay: 1s;"><i class="fas fa-award"></i></div><h3 class="text-xl font-bold mb-2" data-key="award_3">卓越客戶服務獎</h3><p class="text-sm text-slate-400">Excellent Customer Service</p></div></div><div class="award-3d-card-wrapper" data-aos="fade-up" data-aos-delay="300" data-color="purple"><div class="award-card-inner"><div class="award-icon-container award-icon-float" style="animation-delay: 1.5s;"><i class="fas fa-bolt"></i></div><h3 class="text-xl font-bold mb-2" data-key="award_4">最快執行速度獎</h3><p class="text-sm text-slate-400">Fastest Execution Speed</p></div></div></div>
+            </div>
+            <div class="container mx-auto px-6 py-20" data-aos="fade-up">
+                <div class="relative mb-24">
+                    <div class="absolute inset-0 flex items-center justify-center"><div class="future-pulse-ring"></div><div class="future-pulse-ring" style="animation-delay: 1s; width: 70%; height: 70%;"></div><div class="future-pulse-ring" style="animation-delay: 2s; width: 40%; height: 40%;"></div></div>
+                    <div class="relative z-10 text-center"><h3 class="text-5xl font-black mb-6 text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500" data-key="adv_future">邁向輝煌篇章</h3><p class="text-xl text-slate-300 max-w-3xl mx-auto mb-12 leading-relaxed" data-key="adv_future_d">黃河控股實力雄厚，是您邁向成功的重要一步。我們將為您打造一個穩定、安全和高效的環境，同時提供全方位的支持和服務，幫助您實現財富增長的夢想。</p></div>
+                </div>
+                <div class="journey-timeline mb-24">
+                    <div class="timeline-path"></div>
+                    <div class="timeline-item" data-aos="fade-right"><div class="timeline-dot"><div class="timeline-dot-inner"></div></div><div class="timeline-content glass-panel p-8"><div class="flex items-center gap-4 mb-4"><div class="timeline-icon bg-blue-500/20"><i class="fas fa-rocket text-blue-400"></i></div><h4 class="text-2xl font-bold text-white" data-key="timeline_start">創始起步</h4></div><p class="text-slate-400" data-key="timeline_start_desc">從一個願景開始，我們建立了黃河控股的核心價值觀</p></div></div>
+                    <div class="timeline-item" data-aos="fade-left" data-aos-delay="100"><div class="timeline-dot"><div class="timeline-dot-inner"></div></div><div class="timeline-content glass-panel p-8"><div class="flex items-center gap-4 mb-4"><div class="timeline-icon bg-green-500/20"><i class="fas fa-chart-line text-green-400"></i></div><h4 class="text-2xl font-bold text-white" data-key="timeline_growth">穩健成長</h4></div><p class="text-slate-400" data-key="timeline_growth_desc">不斷擴展市場份額，贏得客戶信賴</p></div></div>
+                    <div class="timeline-item" data-aos="fade-right" data-aos-delay="200"><div class="timeline-dot"><div class="timeline-dot-inner"></div></div><div class="timeline-content glass-panel p-8"><div class="flex items-center gap-4 mb-4"><div class="timeline-icon bg-yellow-500/20"><i class="fas fa-award text-yellow-400"></i></div><h4 class="text-2xl font-bold text-white" data-key="timeline_award">榮譽加冕</h4></div><p class="text-slate-400" data-key="timeline_award_desc">多次獲得行業大獎，成為業界標杆</p></div></div>
+                    <div class="timeline-item" data-aos="fade-left" data-aos-delay="300"><div class="timeline-dot"><div class="timeline-dot-inner"></div></div><div class="timeline-content glass-panel p-8"><div class="flex items-center gap-4 mb-4"><div class="timeline-icon bg-purple-500/20"><i class="fas fa-globe-asia text-purple-400"></i></div><h4 class="text-2xl font-bold text-white" data-key="timeline_global">全球視野</h4></div><p class="text-slate-400" data-key="timeline_global_desc">拓展國際市場，服務全球投資者</p></div></div>
+                </div>
+                <div class="relative text-center"><div class="cta-glow-panel max-w-4xl mx-auto" data-aos="zoom-in" data-aos-delay="400"><div class="cta-header-icon mx-auto"><i class="fas fa-bolt"></i></div><h4 class="text-4xl font-black text-white mb-4" data-key="cta_title">極速開啟您的黃金時代</h4><p class="text-xl text-slate-300 mb-12 max-w-3xl mx-auto" data-key="cta_desc">只需簡單幾步，立即獲取全球最優勢的交易資源，與 100,000+ 投資者共同見證財富增長。</p><div class="grid md:grid-cols-3 gap-8 mb-12 max-w-3xl mx-auto"><div class="cta-stat-item"><div class="text-3xl font-bold text-green-400 mb-1">0.06s</div><div class="text-sm text-slate-400" data-key="cta_stat_1">閃電成交</div></div><div class="cta-stat-item"><div class="text-3xl font-bold text-blue-400 mb-1">1:500</div><div class="text-sm text-slate-400" data-key="cta_stat_2">高倍槓桿</div></div><div class="cta-stat-item"><div class="text-3xl font-bold text-yellow-400 mb-1">NO.196</div><div class="text-sm text-slate-400" data-key="cta_stat_3">權威監管</div></div></div><button onclick="switchView('register')" class="btn-glow bg-gradient-to-r from-green-500 to-teal-500 text-black px-12 py-4 rounded-full font-bold text-xl shadow-2xl hover:scale-105 transition-transform" data-key="btn_open_account"><span class="flex items-center gap-3"><span>立即開戶，抓住先機</span><i class="fas fa-arrow-right animate-pulse"></i></span></button></div></div>
+            </div>
+        </div>
+    </div>
+	<div id="view-info" class="view-section">
+        <div class="header-container header-tech text-center">
+            <div class="pulsing-energy-field"></div>
+            <div class="container mx-auto px-6 relative z-10" data-aos="fade-up">
+                <h1 class="text-6xl font-black mb-6 text-white" data-key="info_title">資訊中心</h1>
+                <p class="text-2xl text-slate-400" data-key="info_sub">掌握第一手市場動態與公告</p>
+            </div>
+        </div>
+        <div class="container mx-auto px-6 py-20">
+            <div class="grid md:grid-cols-2 sm:grid-cols-1 gap-12"> <div class="glass-panel p-10 rounded-3xl flex gap-8 items-start cursor-pointer hover:bg-white/5 transition-colors group">
+                    <div class="w-24 h-24 bg-slate-800 rounded-2xl flex items-center justify-center text-green-400 group-hover:scale-110 transition-transform"><i class="fas fa-newspaper text-4xl"></i></div>
+                    <div><div class="text-sm text-green-400 mb-2 font-bold tracking-wider">MARKET NEWS</div><h3 class="font-bold text-2xl text-white mb-3" data-key="news_1_t">新聞快訊透視市場</h3><p class="text-slate-400 leading-relaxed" data-key="news_1_d">快速獲取市場新聞和及時洞察市場走勢是成功的關鍵，黃河APP提供了最新的新聞快訊。</p><div class="mt-4 text-green-400 text-sm font-bold group-hover:translate-x-2 transition-transform">Read More -></div></div>
+                </div>
+                <div class="glass-panel p-10 rounded-3xl flex gap-8 items-start cursor-pointer hover:bg-white/5 transition-colors group">
+                    <div class="w-24 h-24 bg-slate-800 rounded-2xl flex items-center justify-center text-blue-400 group-hover:scale-110 transition-transform"><i class="fas fa-bullhorn text-4xl"></i></div>
+                    <div><div class="text-sm text-blue-400 mb-2 font-bold tracking-wider">SYSTEM NOTICE</div><h3 class="font-bold text-2xl text-white mb-3" data-key="news_2_t">系統維護公告</h3><p class="text-slate-400 leading-relaxed" data-key="news_2_d">為了提供更好的交易體驗，我們將於本週末進行系統維護，期間交易可能受影響，請提前做好資金安排。</p><div class="mt-4 text-blue-400 text-sm font-bold group-hover:translate-x-2 transition-transform">Read More -></div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+	<div id="view-register" class="view-section" style="padding-top: 0; min-height: 100vh; display: none;">
+        <div class="absolute inset-0 flex items-center justify-center z-10 w-full h-full">
+            <div class="container mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center h-full pt-10">
+                <div class="hidden lg:block space-y-16" data-aos="fade-right">
+                    <h2 class="text-7xl font-black text-white leading-tight" data-key="reg_large_title_hardcode">Open Your <br> <span class="text-green-400 text-gradient">Wealth Path</span></h2>
+                    <div class="space-y-10">
+                        <div class="flex items-center gap-8 p-6 glass-panel rounded-3xl hover:translate-x-4 transition-transform border-l-8 border-green-500">
+                            <div class="w-20 h-20 rounded-full bg-green-500/20 flex items-center justify-center text-green-400 text-3xl"><i class="fas fa-bolt"></i></div>
+                            <div><h4 class="text-2xl font-bold text-white mb-2" data-key="reg_feat_1">極速開戶</h4><p class="text-slate-400" data-key="reg_feat_1_d">30秒完成註冊，即刻交易</p></div>
+                        </div>
+                        <div class="flex items-center gap-8 p-6 glass-panel rounded-3xl hover:translate-x-4 transition-transform border-l-8 border-blue-500">
+                            <div class="w-20 h-20 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400 text-3xl"><i class="fas fa-shield-alt"></i></div>
+                            <div><h4 class="text-2xl font-bold text-white mb-2" data-key="reg_feat_2">資金安全</h4><p class="text-slate-400" data-key="reg_feat_2_d">隔離存管，嚴格監管保障</p></div>
+                        </div>
+                    </div>
+                    <button onclick="switchView('home')" class="text-slate-400 hover:text-white flex items-center gap-3 transition-colors text-xl font-bold"><i class="fas fa-arrow-left"></i> <span data-key="btn_back_home">返回首頁</span></button>
+                </div>
+                <div class="w-full max-w-xl mx-auto" data-aos="zoom-in">
+                    <div class="glass-panel p-12 md:p-16 rounded-[3rem] border border-green-500/30 relative overflow-hidden shadow-[0_0_80px_rgba(16,185,129,0.15)]">
+                        <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-40 h-1 bg-green-500 shadow-[0_0_30px_#10b981]"></div>
+                        <h3 class="text-4xl font-bold text-white mb-4 text-center" data-key="reg_title">開立真實賬戶</h3>
+                        <p class="text-slate-400 text-lg text-center mb-12" data-key="reg_sub">與世界接軌，解鎖全新數字化體驗</p>
+                        <form class="space-y-8">
+                            <div class="space-y-2"><label class="text-sm text-green-400 font-bold uppercase ml-2 tracking-widest" data-key="lbl_phone">手機號碼</label><div class="relative group"><i class="fas fa-phone absolute left-6 top-1/2 transform -translate-y-1/2 text-slate-500 group-focus-within:text-green-400 transition-colors text-xl"></i><input type="tel" class="w-full bg-[#020617]/80 border border-slate-700 rounded-2xl py-5 pl-16 pr-5 text-white focus:border-green-500 focus:outline-none focus:shadow-[0_0_20px_rgba(16,185,129,0.2)] transition-all text-xl" placeholder="+852"></div></div>
+                            <div class="space-y-2"><label class="text-sm text-green-400 font-bold uppercase ml-2 tracking-widest" data-key="lbl_pwd">登錄密碼</label><div class="relative group"><i class="fas fa-lock absolute left-6 top-1/2 transform -translate-y-1/2 text-slate-500 group-focus-within:text-green-400 transition-colors text-xl"></i><input type="password" class="w-full bg-[#020617]/80 border border-slate-700 rounded-2xl py-5 pl-16 pr-5 text-white focus:border-green-500 focus:outline-none focus:shadow-[0_0_20px_rgba(16,185,129,0.2)] transition-all text-xl" placeholder="••••••••"></div></div>
+                            <div class="flex items-start gap-4 mt-6 p-5 rounded-2xl bg-white/5 border border-white/5"><input type="checkbox" class="mt-1 accent-green-500 w-6 h-6 cursor-pointer"><p class="text-sm text-slate-400 leading-relaxed"><span data-key="agree_text">我已閱讀並同意</span> <a href="#" class="text-green-400 hover:underline font-bold" data-key="agree_link">用戶協議、免責聲明及隱私條款</a>。</p></div>
+                            <button type="button" class="w-full btn-glow bg-gradient-to-r from-green-500 to-teal-500 text-black font-bold py-6 rounded-2xl text-2xl mt-8 shadow-2xl" data-key="btn_submit">立即開戶</button>
+                        </form>
+                        <div class="text-center mt-10 lg:hidden"><button onclick="switchView('home')" class="text-base text-slate-500 hover:text-white" data-key="btn_back_home">返回首頁</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	<footer class="bg-[#02040a] py-20 border-t border-slate-900 text-sm relative z-20">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 sm:grid-cols-2 gap-12 mb-16"> <div>
+                    <div class="flex items-center gap-3 mb-6 group cursor-default">
+    <img src="https://rawcdn.githack.com/foronlinetet/video/71a6752951b38bf047a5a7fceaadd4ef553cd07f/grlogo.svg" alt="Logo" class="h-8 grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all">
+    <span class="text-xl font-bold text-slate-500 group-hover:text-white transition-colors" data-key="ft_logo_text">黃河控股</span>
+</div>
+                    <p class="text-slate-500 mb-6" data-key="ft_company_name">黃河控股 Golden River Holding Group Limited</p>
+                    <div class="space-y-4 text-slate-400">
+                        <div class="flex items-center gap-3"><i class="fas fa-headset text-green-500"></i> <span data-key="ft_service_online">在線客服：點擊開啟</span></div>
+                        <div class="flex items-center gap-3"><i class="fas fa-phone text-green-500"></i> +852-3703 1548</div>
+                        <div class="flex items-center gap-3"><i class="fas fa-envelope text-green-500"></i> info@gr196.com</div>
+                    </div>
+                </div>
+                <div><h4 class="text-white font-bold mb-6 text-lg" data-key="ft_links">快速鏈接</h4><ul class="space-y-3 text-slate-500"><li><button onclick="switchView('rules')" class="hover:text-green-400 transition-colors" data-key="nav_rules">投資規則</button></li><li><button onclick="switchView('accounts')" class="hover:text-green-400 transition-colors" data-key="nav_accounts">賬戶類型</button></li><li><button onclick="switchView('download')" class="hover:text-green-400 transition-colors" data-key="nav_download">下載中心</button></li></ul></div>
+                <div><h4 class="text-white font-bold mb-6 text-lg" data-key="ft_about">關於我們</h4><ul class="space-y-3 text-slate-500"><li><button onclick="switchView('advantages')" class="hover:text-green-400 transition-colors" data-key="nav_advantages">黃河優勢</button></li><li class="hover:text-green-400 transition-colors" data-key="ft_fund_safe">資金安全</li></ul></div>
+                <div><h4 class="text-white font-bold mb-6 text-lg" data-key="ft_reg">監管信息</h4><p class="text-slate-600 text-xs leading-relaxed" data-key="ft_reg_desc_1">Golden River Holding Group Limited 註冊於科摩羅聯盟，編號 16202。<br>A類註冊人 Category A Registrant A-B-25-11-10049</p><p class="text-slate-600 text-xs leading-relaxed mt-4" data-key="ft_reg_desc_2">地址：Boulevard de Coalancanthe, Mutsamudu, Anjouan, Union of Comoros.</p></div>
+            </div>
+            <div class="border-t border-slate-900 pt-10 text-justify text-slate-700 text-xs leading-relaxed space-y-4"><p data-key="ft_risk">高風險投資警告：差價合約（CFD）屬於複雜的金融產品，其使用槓桿交易的屬性導致本金快速虧損的可能性較高。請在入市前先了解差價合約的產品原理並考慮是否能夠承受此風險。所有金融衍生產品工具的過往價格與表現並不擔保或代表未來走勢。</p><p data-key="ft_restriction">限制地區： Golden River Holding Group Limited 不向某些國家的居民提供服務，包括但不限於台灣、加拿大、日本、朝鮮、伊朗和美利堅合眾國（美國）。</p><p class="text-center pt-6 opacity-50">© 2025 Golden River Holding Group Limited. All rights reserved.</p></div>
+        </div>
+    </footer>
+	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+	<script>
+	AOS.init({ duration: 800, once: false });
+
+        // --- 語言切換邏輯 ---
+        const langData = {
+            'tw': {
+                // 手機版語言選單翻譯
+                'm_lang_select': '語言選擇',
+                'btn_close_menu': '關閉選單', // 新增
+                'lang_tw': '繁體中文', 'lang_cn': '簡體中文', 'lang_en': 'English',
+                
+				'btn_submit': '立即開戶', 'ft_logo_text': '黃河控股', 'page_title': '黃河控股 Golden River | 掌握全球財富流向',
+                'nav_home': '首頁', 'nav_rules': '投資規則', 'nav_accounts': '賬戶類型', 'nav_download': '下載中心', 'nav_advantages': '黃河優勢', 'nav_info': '資訊中心', 'btn_open_account': '註冊真實賬戶', 'nav_logo_text': '黃河控股',
+                'hero_badge': 'NO.196 香港黃金交易所行員', 'hero_title': '無需高額成本 <br> <span class="text-gradient">玩轉巨大財富</span>', 'hero_desc': '專業合格監管，享受智慧投資。<br>毫秒級下單，抓住每個盈利機會。<br>優於市場的低點差且不收佣金。', 'btn_start_now': '立即開戶 <i class="fas fa-arrow-right ml-2"></i>', 'btn_dl_app': '下載 APP', 'app_assets': '總資產 (USD)', 'app_trade_btn': '一鍵交易',
+                'eco_title': '金融生態系統', 'eco_1': '全球市場', 'eco_1_d': '連接國際頂級流動性供應商', 'eco_2': '極速引擎', 'eco_2_d': '專利撮合技術，毫秒級成交', 'eco_3': '加密安全', 'eco_3_d': '銀行級數據防護標準', 'expert_title': '無需金融專業 <br> <span class="text-gradient">隨時掌控市場盤</span>', 'expert_desc': '数十位专业分析师在线制定操盘建议，您將能在黄河控股轻松投资聪明获利没烦恼。', 'btn_get_analysis': '取得專業分析', 'feat_expert': '專業團隊', 'feat_signal': '精準信號', 'enc_title': '獨家加密技術', 'enc_desc': '我們採用最先進的科技防護，確保您的數據在傳輸和存儲過程中得到保障。我們引以為傲的加密安全技術將成為您最值得信賴的護衛·為您提供安心和放心的操作體驗。', 'btn_safe_trade': '立即體驗安全交易', 'guard_title': '您的財富守護者', 'guard_sub': '您的資金安全是我們最重要的關注點。我們不斷更新和改進我們的安全系統，確保您的資金始終安全可靠。', 'sec_1': '加密技術', 'sec_1_d': '安全無憂', 'sec_2': '數據保護', 'sec_2_d': '隱私傳輸', 'sec_3': '數字資產', 'sec_3_d': '穩健增值', 'sec_4': '資金安全', 'sec_4_d': '穩如磐石', 'new_ad_t1': '洞察市場', 'new_ad_d1': '精準分析趨勢', 'new_ad_t2': '穩定增長', 'new_ad_d2': '高效投資渠道', 'new_ad_sub': '貴金屬 CFDs靜安區', 'new_ad_txt': '貴金屬CFDs是指標的物為實物商品的差價合約，主要包括倫敦金、倫敦銀等大類。投資者可通過保證金的方式，進行買入或者賣出商品合約，賺取漲跌差價。黃河控股營運團隊擁有十年豐富專業經驗，分析師提供專業市場建議，給您優秀的市場競爭性點差。', 'slogan_1': '以專業洞察', 'slogan_2': '帶你穿越市場波動', 'btn_join_us': '加入我們',
+                'rules_title': '投資規則', 'rules_sub': '透明公正 · 倫敦金 (LLG) 及 倫敦銀 (LLS) · 全球同步報價', 'cfd_ad_title': '貴金屬 CFDs 差價合約', 'cfd_desc': '黃河控股營運團隊擁有十年豐富專業經驗，分析師提供專業市場建議，給您優秀的市場競爭性點差。', 'tbl_title': '合約細則一覽表', 'tbl_hint': '向左滑動查看更多', 'tbl_item': '項目', 'tbl_llg': '倫敦金 (LLG)', 'tbl_lls': '倫敦銀 (LLS)', 'calc_title': '盈虧計算公式', 'calc_formula': '總盈虧 = (平倉價 - 開倉價) x 合約單位 x 手數 ± 過夜利息 – 佣金', 'calc_note': '注意：即日平倉，無須支付過夜利息，實際過夜利息以平台顯示為準。', 'ex_title': '實例分析', 'ex_desc': '假設您認為倫敦金(LLG)會從 1740 上漲至 1745，買入 1手。', 'profit': '收益', 'calc_desc': '掌握財富密碼，精算每一分收益。', 'level_title': '您的財富進階之路', 'trade_24': '全天候交易', 'trade_24_d': 'T+0 雙向交易，隨時買賣', 'lev_desc': '小資金，大能量。運用高槓桿放大您的投資回報，靈活配置資產。',
+                'rule_leverage_title': '槓桿優勢 (Leverage)', 'rule_gr_platform': '黃河控股', 'rule_retail_bank': '普通銀行', 'rule_trading_hours_title': '交易時間 (Trading Hours)', 'rule_summer_time': '夏令：', 'rule_winter_time': '冬令：', 'rule_median_spread': '中位數點差', 'rule_mini': '迷你 (Mini)', 'rule_standard': '標準 (Standard)', 'rule_gold': '黃金 (Gold)', 'rule_diamond': '鑽石 (Diamond)', 'rule_swap_title': '隔夜利息', 'rule_buy': '買入 (Buy)', 'rule_sell': '賣出 (Sell)', 'rule_summer_time_content': '週一 06:00 - 週六 04:45', 'rule_winter_time_content': '週一 07:00 - 週六 05:45', 'rule_llg_mini_spread': '0.5 (固定)', 'rule_lls_mini_spread': '0.04 (固定)', 'rule_llg_std_spread': '0.5 (固定)', 'rule_lls_std_spread': '0.04 (固定)', 'rule_llg_gold_spread': '0.5 (固定)', 'rule_lls_gold_spread': '0.04 (固定)', 'rule_llg_dia_spread': '0.5 (固定)', 'rule_lls_dia_spread': '0.04 (固定)', 'rule_leverage_tier': '層級 / 槓桿', 'rule_llg_tier': '5.01-60手: 125倍 ($1000)<br>60.01-180手: 50倍 ($2500)<br>180.01+手: 30倍 ($4000)', 'rule_lls_tier': '0.01-2手: 500倍 ($200)<br>2.01-5手: 245倍 ($500)', 'rule_unit': '合約單位', 'rule_llg_unit': '100 盎司', 'rule_lls_unit': '5000 盎司', 'rule_single_limit': '單筆限制', 'rule_llg_limit': '0.01-30 手', 'rule_lls_limit': '0.01-30 手', 'rule_liquidation': '強制平倉', 'rule_holiday_liq': '假期強平', 'rule_hedge_margin': '鎖倉保證金', 'rule_break_time': '休市時間', 'rule_break_time_content': '夏令：週二至週五 05:00-06:00<br>冬令：週二至週五 06:00-07:00', 'rule_margin_raise_time': '休市前提高保證金', 'rule_margin_raise_time_content': '夏令：週六 04:15<br>冬令：週六 05:15',
+                'acc_title': '賬戶專業分層', 'acc_sub': '量身定制的權益和福利 · 滿足不同階段的投資者', 'acc_mini': '迷你', 'acc_mini_d': '適合投資初學者', 'acc_std': '標準', 'acc_std_d': '適合低風險投資者', 'acc_gold': '黃金', 'acc_gold_d': '適合投資頻密者', 'acc_dia': '鑽石', 'acc_dia_d': '適合資金充足者', 'acc_min_dep': '最低入金', 'btn_select': '選擇', 'btn_upgrade_now': '立即升級', 'btn_vip': '尊享鑽石', 'acc_feat_1': '免費專家指導', 'acc_feat_2': '最小下單 0.01手', 'acc_feat_3': '固定50倍槓桿', 'acc_feat_4': '包含迷你所有功能', 'acc_feat_5': '投資建議支持', 'acc_feat_6': '成本直降 45%', 'acc_feat_7': '享受點差回饋', 'acc_feat_8': '專享個性化服務', 'acc_feat_9': '成本直降 70%', 'acc_feat_10': '最優惠點差回贈', 'acc_feat_11': '專屬賬戶經理', 'acc_low_spread': '低點差', 'acc_high_rebate': '高回贈', 'acc_exclusive_manager': '專屬經理', 'rule_up_title': '賬戶升級攻略', 'up_path_1': '迷你 ➜ 標準', 'up_desc_1': '視用戶自身風險管控，可主動升級標準賬戶。', 'up_path_2': '標準 ➜ 黃金', 'up_path_3': '黃金 ➜ 鑽石', 'user_new': '新用戶：', 'gold_req_new': '首充 $3,000 或 當月淨充值 $3,000。', 'gold_req_old': '月結淨充值 $3,000 或 上月100手。', 'user_old': '老用戶：', 'dia_req_new': '首充 $15,000 或 當月淨充值 $15,000。', 'dia_req_old': '月結淨充值 $15,000 或 上月200手。', 'rule_down_title': '降級規則與注意事項', 'validity_text': '等級有效期：每月統計並調整1次。若賬戶為非活躍狀態且淨值未達標，將自動降級。', 'down_rule_1': '<strong>鑽石 ➜ 黃金：</strong> 賬戶非活躍 且 淨值未達 $3,000。', 'down_rule_2': '<strong>黃金 ➜ 標準：：</strong> 賬戶非活躍 且 淨值未達 $15,000。', 'def_title': '名詞定義', 'def_1': '• <strong>賬戶活躍狀態：：</strong> 當月賬戶有存款、開倉、平倉任一筆記錄。', 'def_2': '• <strong>手數定義：：：：</strong> 客戶開倉1手，然後再行平倉1手，則整個來回算1手。', 'def_3': '• <strong>特殊情況：：：：：</strong> 在有掛單和持倉的情況下，賬戶不支持升降級。',
+                'dl_title': '下載中心', 'dl_sub': '隨時隨地 · 掌握獲利機會 · IOS / Android', 'step_1': '下載', 'step_1_d': '黃河控股APP創新智能，掌握財富。', 'step_2': '註冊', 'step_2_d': '僅需30秒，暢享開戶便利。', 'step_3': '激活', 'step_3_d': '低門檻起航，資金及時到賬。', 'step_4': '實行', 'step_4_d': '0.06秒快速下單，瞬間成交。', 'app_feat_title': '暢享一站式投資體驗', 'app_feat_desc': '黃河控股APP為您帶來獨特的投資視角，深度洞察世界的前沿，搶先獲取投資見解，盡在我們的新聞資訊。<br><br>✔ 68種技術指標<br>✔ 精準止盈止損掛單<br>✔ 閃電下單 0.06s', 'comp_title': '註冊真實賬戶福利對比', 'comp_1': 'VIP待遇', 'comp_2': '註冊流程', 'fast': '快速', 'slow': '繁瑣', 'comp_3': '尊貴特權', 'gr_platform': '黃河控股', 'other_platform': '其它交易平台',
+                'adv_title': '天時地利 <br> 恆星閃耀', 'adv_sub': '我們的目標是您的成功，您的滿意是我們最大的動力', 'adv_fund': '快捷資金操作', 'adv_fund_d': '支持多種支付方式，2小時取款到賬；資金隔離存管，按照相關監管法規進行合規管理。', 'adv_enc': '信息加密保護', 'adv_enc_d': '採用SSL加密技術加密保護，並設有嚴格的安全系統，未經授權任何人無法獲取用戶信息。', 'adv_reg': '遵循嚴格監管', 'adv_reg_d': '我們受到嚴格的監管以保護您的權益，香港黃金交易所監管，行員號196。', 'award_title': '榮譽獲獎', 'award_desc': '黃河控股營運團隊屢獲殊榮 · 成就傳奇', 'award_1': '最佳交易平台', 'award_2': '亞洲最具影響力品牌', 'award_3': '卓越客戶服務獎', 'award_4': '最快執行速度獎', 'adv_future': '邁向輝煌篇章', 'adv_future_d': '黃河控股實力雄厚，是您邁向成功的重要一步。我們將為您打造一個穩定、安全和高效的環境，同時提供全方位的支持和服務，幫助您實現財富增長的夢想。',
+                'info_title': '資訊中心', 'info_sub': '掌握第一手市場動態與公告', 'news_1_t': '新聞快訊透視市場', 'news_1_d': '快速獲取市場新聞和及時洞察市場走勢是成功的關鍵，黃河APP提供了最新的新聞快訊。', 'news_2_t': '系統維護公告', 'news_2_d': '為了提供更好的交易體驗，我們將於本週末進行系統維護，期間交易可能受影響，請提前做好資金安排。',
+                'reg_title': '開立真實賬戶', 'reg_sub': '與世界接軌，解鎖全新數字化體驗', 'reg_feat_1': '極速開戶', 'reg_feat_1_d': '30秒完成註冊，即刻交易', 'reg_feat_2': '資金安全', 'reg_feat_2_d': '隔離存管，嚴格監管保障', 'btn_back_home': '返回首頁', 'lbl_phone': '手機號碼', 'lbl_pwd': '登錄密碼', 'agree_text': '我已閱讀並同意', 'agree_link': '用戶協議、免責聲明及隱私條款', 'reg_large_title_hardcode': '開啟您的 <br> <span class="text-green-400 text-gradient">財富之門</span>',
+                'adv_focus_main_title': '掌握速度與精準：黃河交易引擎', 'adv_focus_main_sub': '毫秒級決策，為您的財富保駕護航', 'adv_speed_title': '極速效率與智能工具', 'adv_control_title': '智能風控與市場洞察', 'adv_open_title': '極速開戶 (30秒完成)', 'adv_flash_title': '閃電成交 (0.06秒)', 'adv_indicators_title': '專業多樣指標 (68種+)', 'adv_open_slogan': '簡化流程，只需簡單幾步，瞬間掌握您的專屬投資賬戶。', 'adv_flash_slogan': '專利撮合技術，毫秒級響應速度，讓您在市場波動中快人一步，抓住轉瞬即逝的機會。', 'adv_indicators_slogan': '提供超過68種內建技術指標，助您進行深度分析，優化複雜的交易策略。', 'focus_profit_title': '鎖定利潤 & 精準風控', 'focus_profit_slogan': '透過**精準止盈止損掛單**，將潛在風險限制在最小範圍，確保您的收益不會被突發波動侵蝕。', 'focus_news_title': '新聞快訊透視市場', 'focus_news_slogan': '實時推送最新市場新聞與分析，提供關鍵的洞察力，幫助您在複雜的市場中做出明智的投資決策。', 'btn_join_us_focus': '立即加入，開啟智能交易',
+                'home_award_title': '頂尖經紀商 · 榮獲全球殊榮', 'home_award_sub': '專業實力深受業界肯定，是您值得信賴的交易夥伴。', 'award_home_1': '貴金屬投資最佳榮譽獎', 'award_home_1_source': '2020 FOLLOWME 年度評選', 'award_home_2': '最受信賴貴金屬投資公司', 'award_home_2_source': '2019年度財經排行榜', 'award_home_3': '最佳財經及投資者關係金獎', 'award_home_3_source': '美國金橋商業創新活動', 'award_home_4': '最具營銷影響力黃金公司', 'award_home_4_source': '第17屆中國財經風雲榜', 'award_home_5': '最佳移動端投資機構', 'award_home_5_source': '2019年度FX168經紀商風雲榜',
+                'trust_team_title': '數據驅動，精準護航', 'trust_team_desc': '我們經驗豐富的**專業分析師團隊**，利用先進數據模型，提供精準的投資見解，助您在瞬息萬變的市場中把握致勝先機。', 'trust_reg_title': '權威認可，信賴基石', 'trust_reg_desc': '黃河控股榮獲**香港黃金交易所 (CGSE)** 認可，行員編號 196。<br>這代表我們在資金安全和透明度方面，符合業界最嚴格的標準。', 'btn_select_gr': '選擇黃河，開啟成功',
+                'timeline_start': '創始起步', 'timeline_start_desc': '從一個願景開始，我們建立了黃河控股的核心價值觀', 'timeline_growth': '穩健成長', 'timeline_growth_desc': '不斷擴展市場份額，贏得客戶信賴', 'timeline_award': '榮譽加冕', 'timeline_award_desc': '多次獲得行業大獎，成為業界標杆', 'timeline_global': '全球視野', 'timeline_global_desc': '拓展國際市場，服務全球投資者', 'cta_title': '極速開啟您的黃金時代', 'cta_desc': '只需簡單幾步，立即獲取全球最優勢的交易資源，與 100,000+ 投資者共同見證財富增長。', 'cta_stats': '已有超過 100,000+ 投資者選擇黃河控股', 'cta_stat_1': '閃電成交', 'cta_stat_2': '高倍槓桿', 'cta_stat_3': '權威監管',
+                'ft_company_name': '黃河控股 Golden River Holding Group Limited', 'ft_service_online': '在線客服：點擊開啟', 'ft_links': '快速鏈接', 'ft_about': '關於我們', 'ft_fund_safe': '資金安全', 'ft_reg': '監管信息', 'ft_reg_desc_1': 'Golden River Holding Group Limited 註冊於科摩羅聯盟，編號 16202。<br>A類註冊人 Category A Registrant A-B-25-11-10049', 'ft_reg_desc_2': '地址：Boulevard de Coalancanthe, Mutsamudu, Anjouan, Union of Comoros.', 'ft_risk': '高風險投資警告：差價合約（CFD）屬於複雜的金融產品，其使用槓桿交易的屬性導致本金快速虧損的可能性較高。請在入市前先了解差價合約的產品原理並考慮是否能夠承受此風險。所有金融衍生產品工具的過往價格與表現並不擔保或代表未來走勢。', 'ft_restriction': '限制地區： Golden River Holding Group Limited 不向某些國家的居民提供服務，包括但不限於台灣、加拿大、日本、朝鮮、伊朗和美利堅合眾國（美國）。',
+            },
+            'cn': {
+                // 手機版語言選單翻譯 (簡中)
+                'm_lang_select': '语言选择',
+                'btn_close_menu': '关闭菜单', // 新增
+                'lang_tw': '繁体中文', 'lang_cn': '简体中文', 'lang_en': 'English',
+
+				'btn_submit': '立即开户', 'ft_logo_text': '黄河控股', 'page_title': '黄河控股 Golden River | 掌握全球财富流向',
+                'nav_home': '首页', 'nav_rules': '投资规则', 'nav_accounts': '账户类型', 'nav_download': '下载中心', 'nav_advantages': '黄河优势', 'nav_info': '资讯中心', 'btn_open_account': '注册真实账户', 'nav_logo_text': '黄河控股',
+                'hero_badge': 'NO.196 香港黄金交易所行员', 'hero_title': '无需高额成本 <br> <span class="text-gradient">玩转巨大财富</span>', 'hero_desc': '专业合格监管，享受智慧投资。<br>毫秒级下单，抓住每个盈利机会。<br>优于市场的低点差且不收佣金。', 'btn_start_now': '立即开户 <i class="fas fa-arrow-right ml-2"></i>', 'btn_dl_app': '下载 APP', 'app_assets': '总资产 (USD)', 'app_trade_btn': '一键交易',
+                'eco_title': '金融生态系统', 'eco_1': '全球市场', 'eco_1_d': '连接国际顶级流动性供应商', 'eco_2': '极速引擎', 'eco_2_d': '专利撮合技术，毫秒级成交', 'eco_3': '加密安全', 'eco_3_d': '银行级数据防护标准', 'expert_title': '无需金融专业 <br> <span class="text-gradient">随时掌控市场盘</span>', 'expert_desc': '数十位专业分析师在线制定操盘建议，您将能在黄河控股轻松投资聪明获利没烦恼。', 'btn_get_analysis': '取得专业分析', 'feat_expert': '专业团队', 'feat_signal': '精准信号', 'enc_title': '独家加密技术', 'enc_desc': '我们采用最先进的科技防护，确保您的数据在传输和存储过程中得到保障。我們引以为傲的加密安全技术將成为您最值得信赖的護衛，为您提供安心和放心的操作体验。', 'btn_safe_trade': '立即体验安全交易', 'guard_title': '您的财富守护者', 'guard_sub': '您的资金安全是我们最重要的关注点。我们不断更新和改进我们的安全系统，确保您的资金始终安全可靠。', 'sec_1': '加密技术', 'sec_1_d': '安全无忧', 'sec_2': '数据保护', 'sec_2_d': '隐私传输', 'sec_3': '数字资产', 'sec_3_d': '稳健增值', 'sec_4': '资金安全', 'sec_4_d': '稳如磐石', 'new_ad_t1': '洞察市场', 'new_ad_d1': '精准分析趋势', 'new_ad_t2': '稳定增长', 'new_ad_d2': '高效投资渠道', 'new_ad_sub': '贵金属 CFDs专区', 'new_ad_txt': '贵金属CFDs是指标的物为实物商品的差价合约，主要包括伦敦金、伦敦银等大类。投资者可通过保证金的方式，进行买入或者卖出商品合约，赚取涨跌差价。黄河控股运营团队拥有十年丰富专业经验，分析師提供专业市场建议，給您优秀的市场竞争性点差。', 'slogan_1': '以专业洞察', 'slogan_2': '带你穿越市场波动', 'btn_join_us': '加入我们',
+                'rules_title': '投资规则', 'rules_sub': '透明公正 · 伦敦金 (LLG) 及 伦敦银 (LLS) · 全球同步报价', 'cfd_ad_title': '贵金属 CFDs 差价合約', 'cfd_desc': '黄河控股运营团队拥有十年丰富专业经验，分析师提供专业市场建议，給您优秀的市场竞争性点差。', 'tbl_title': '合约细则一览表', 'tbl_hint': '向左滑动查看更多', 'tbl_item': '项目', 'tbl_llg': '伦敦金 (LLG)', 'tbl_lls': '伦敦银 (LLS)', 'calc_title': '盈亏计算公式', 'calc_formula': '总盈亏 = (平仓价 - 开仓价) x 合约单位 x 手数 ± 过夜利息 – 佣金', 'calc_note': '注意：即日平仓，无须支付过夜利息，实际过夜利息以平台显示为准。', 'ex_title': '实例分析', 'ex_desc': '假设您认为伦敦金(LLG)会从 1740 上涨至 1745，买入 1手。', 'profit': '收益', 'calc_desc': '掌握财富密码，精算每一分收益。', 'level_title': '您的财富进阶之路', 'trade_24': '全天候交易', 'trade_24_d': 'T+0 双向交易，随时买卖', 'lev_desc': '小资金，大能量。运用高杠杆放大您的投资回报，灵活配置资产。',
+                'rule_leverage_title': '杠杆优势 (Leverage)', 'rule_gr_platform': '黄河控股', 'rule_retail_bank': '普通银行', 'rule_trading_hours_title': '交易时间 (Trading Hours)', 'rule_summer_time': '夏令：', 'rule_winter_time': '冬令：', 'rule_median_spread': '中位数点差', 'rule_mini': '迷你 (Mini)', 'rule_standard': '标准 (Standard)', 'rule_gold': '黄金 (Gold)', 'rule_diamond': '钻石 (Diamond)', 'rule_swap_title': '隔夜利息', 'rule_buy': '买入 (Buy)', 'rule_sell': '卖出 (Sell)', 'rule_summer_time_content': '周一 06:00 - 周六 04:45', 'rule_winter_time_content': '周一 07:00 - 周六 05:45', 'rule_llg_mini_spread': '0.5 (固定)', 'rule_lls_mini_spread': '0.04 (固定)', 'rule_llg_std_spread': '0.5 (固定)', 'rule_lls_std_spread': '0.04 (固定)', 'rule_llg_gold_spread': '0.5 (固定)', 'rule_lls_gold_spread': '0.04 (固定)', 'rule_llg_dia_spread': '0.5 (固定)', 'rule_lls_dia_spread': '0.04 (固定)', 'rule_leverage_tier': '层级 / 杠杆', 'rule_llg_tier': '5.01-60手: 125倍 ($1000)<br>60.01-180手: 50倍 ($2500)<br>180.01+手: 30倍 ($4000)', 'rule_lls_tier': '0.01-2手: 500倍 ($200)<br>2.01-5手: 245倍 ($500)', 'rule_unit': '合约单位', 'rule_llg_unit': '100 盎司', 'rule_lls_unit': '5000 盎司', 'rule_single_limit': '单笔限制', 'rule_llg_limit': '0.01-30 手', 'rule_lls_limit': '0.01-30 手', 'rule_liquidation': '强制平仓', 'rule_holiday_liq': '假期强平', 'rule_hedge_margin': '锁仓保证金', 'rule_break_time': '休市时间', 'rule_break_time_content': '夏令：周二至周五 05:00-06:00<br>冬令：周二至周五 06:00-07:00', 'rule_margin_raise_time': '休市前提高保证金', 'rule_margin_raise_time_content': '夏令：周六 04:15<br>冬令：周六 05:15',
+                'acc_title': '账户专业分层', 'acc_sub': '量身定制的权益和福利 · 满足不同阶段的投资者', 'acc_mini': '迷你', 'acc_mini_d': '适合投资初学者', 'acc_std': '标准', 'acc_std_d': '适合低风险投资者', 'acc_gold': '黄金', 'acc_gold_d': '适合投资频密者', 'acc_dia': '钻石', 'acc_dia_d': '适合资金充足者', 'acc_min_dep': '最低入金', 'btn_select': '选择', 'btn_upgrade_now': '立即升级', 'btn_vip': '尊享钻石', 'acc_feat_1': '免费专家指导', 'acc_feat_2': '最小下单 0.01手', 'acc_feat_3': '固定50倍杠杆', 'acc_feat_4': '包含迷你所有功能', 'acc_feat_5': '投资建议支持', 'acc_feat_6': '成本直降 45%', 'acc_feat_7': '享受点差回馈', 'acc_feat_8': '专享个性化服务', 'acc_feat_9': '成本直降 70%', 'acc_feat_10': '最优惠点差回赠', 'acc_feat_11': '专属账户经理', 'acc_low_spread': '低点差', 'acc_high_rebate': '高回赠', 'acc_exclusive_manager': '专属经理', 'rule_up_title': '账户升级攻略', 'up_path_1': '迷你 ➜ 标准', 'up_desc_1': '视用户自身风险管控，可主动升级标准账户。', 'up_path_2': '标准 ➜ 黄金', 'up_path_3': '黄金 ➜ 钻石', 'user_new': '新用户：', 'gold_req_new': '首充 $3,000 或 当月淨充值 $3,000。', 'gold_req_old': '月结净充值 $3,000 或 上月100手。', 'user_old': '老用户：', 'dia_req_new': '首充 $15,000 或 当月净充值 $15,000。', 'dia_req_old': '月结净充值 $15,000 或 上月200手。', 'rule_down_title': '降级规则与注意事项', 'validity_text': '等级有效期：每月统计并调整1次。若账户为非活跃状态且净值未达标，将自动降级。', 'down_rule_1': '<strong>钻石 ➜ 黄金：</strong> 账户非活跃 且 净值未达 $3,000。', 'down_rule_2': '<strong>黄金 ➜ 标准：</strong> 账户非活跃 且 净值未达 $15,000。', 'def_title': '名词定义', 'def_1': '• <strong>账户活跃状态：：</strong> 當月账户有存款、开仓、平倉任一笔记录。', 'def_2': '• <strong>手数定义：：：：</strong> 客户开仓1手，然后再行平仓1手，则整个来回算1手。', 'def_3': '• <strong>特殊情况：：：：：</strong> 在有挂单和持仓的情况下，账户不支持升降级。',
+                'dl_title': '下载中心', 'dl_sub': '随时随地 · 掌握获利机会 · IOS / Android', 'step_1': '下载', 'step_1_d': '黄河控股APP创新智能，掌握财富。', 'step_2': '注册', 'step_2_d': '仅需30秒，畅享开户便利。', 'step_3': '激活', 'step_3_d': '低门槛起航，资金及时到账。', 'step_4': '实行', 'step_4_d': '0.06秒快速下单，瞬间成交。', 'app_feat_title': '畅享一站式投资体验', 'app_feat_desc': '黄河控股APP为您带来独特的投资视角，深度洞察世界的前沿，抢先获取投资见解。<br><br>✔ 68种技术指标<br>✔ 精准止盈止损挂单<br>✔ 闪电下单 0.06s', 'comp_title': '注册真实账户福利对比', 'comp_1': 'VIP待遇', 'comp_2': '注册流程', 'fast': '快速', 'slow': '繁琐', 'comp_3': '尊贵特权', 'gr_platform': '黄河控股', 'other_platform': '其它交易平台',
+                'adv_title': '天时地利 <br> 恒星闪耀', 'adv_sub': '我们的目标是您的成功，您的满意是我们最大的动力', 'adv_fund': '快捷资金操作', 'adv_fund_d': '支持多种支付方式，2小时取款到账；资金隔离存管，按照相关监管法规进行合规管理。', 'adv_enc': '信息加密保护', 'adv_enc_d': '采用SSL加密技术加密保护，并设有严格的安全系统，未经授权任何人无法获取用户信息。', 'adv_reg': '遵循严格监管', 'adv_reg_d': '我们受到严格的监管以保护您的权益，香港黄金交易所监管，行员号196。', 'award_title': '荣誉获奖', 'award_desc': '黄河控股运营团队屡获殊荣 · 成就传奇', 'award_1': '最佳交易平台', 'award_2': '亚洲最具影响力品牌', 'award_3': '卓越客户服务奖', 'award_4': '最快执行速度奖', 'adv_future': '迈向辉煌篇章', 'adv_future_d': '黄河控股实力雄厚，是您迈向成功的重要一步。我们将为您打造一个稳定、安全和高效的环境，同时提供全方位的支持和服务，帮助您实现财富增长的梦想。',
+                'info_title': '资讯中心', 'info_sub': '掌握第一手市场动态与公告', 'news_1_t': '新闻快讯透视市场', 'news_1_d': '快速获取市场新闻和及时洞察市场走势是成功的关键，黄河APP提供了最新的新闻快讯。', 'news_2_t': '系统维护公告', 'news_2_d': '为了提供更好的交易体验，我们将于本周末进行系统维护，期间交易可能受影响，请提前做好资金安排。',
+                'reg_title': '开立真实账户', 'reg_sub': '与世界接轨，解锁全新数字化体验', 'reg_feat_1': '极速开户', 'reg_feat_1_d': '30秒完成注册，即刻交易', 'reg_feat_2': '资金安全', 'reg_feat_2_d': '隔离存管，严格监管保障', 'btn_back_home': '返回首页', 'lbl_phone': '手机号码', 'lbl_pwd': '登录密码', 'agree_text': '我已阅读并同意', 'agree_link': '用户协议、免责声明及隐私条款', 'reg_large_title_hardcode': '开启您的 <br> <span class="text-green-400 text-gradient">财富之门</span>',
+                'adv_focus_main_title': '掌握速度与精准：黄河交易引擎', 'adv_focus_main_sub': '毫秒级决策，为您的财富保驾护航', 'adv_speed_title': '极速效率与智能工具', 'adv_control_title': '智能风控与市场洞察', 'adv_open_title': '极速开户 (30秒完成)', 'adv_flash_title': '闪电成交 (0.06秒)', 'adv_indicators_title': '专业多样指标 (68种+)', 'adv_open_slogan': '简化流程，只需简单几步，瞬间掌握您的专属投资账户。', 'adv_flash_slogan': '专利撮合技术，毫秒级响应速度，让您在市场波动中快人一步，抓住转瞬即逝的机会。', 'adv_indicators_slogan': '提供超过68种内置技术指标，助您进行深度分析，优化复杂的交易策略。', 'focus_profit_title': '锁定利润 & 精准风控', 'focus_profit_slogan': '透过**精准止盈止损挂单**，将潜在风险限制在最小范围，确保您的收益不会被突發波動侵蝕。', 'focus_news_title': '新闻快讯透视市场', 'focus_news_slogan': '实时推送最新市场新闻与分析，提供关键的洞察力，帮助您在复杂的市场中做出明智的投资决策。', 'btn_join_us_focus': '立即加入，开启智能交易',
+                'home_award_title': '顶尖经纪商 · 荣获全球殊荣', 'home_award_sub': '专业实力深受业界肯定，是您值得信赖的交易伙伴。', 'award_home_1': '贵金属投资最佳荣誉奖', 'award_home_1_source': '2020 FOLLOWME 年度评选', 'award_home_2': '最受信赖贵金属投资公司', 'award_home_2_source': '2019年度财经排行榜', 'award_home_3': '最佳财经及投资者关系金奖', 'award_home_3_source': '美国金桥商业创新活动', 'award_home_4': '最具营销影响力黄金公司', 'award_home_4_source': '第17届中国财经风云榜', 'award_home_5': '最佳移动端投资机构', 'award_home_5_source': '2019 FX168 Broker Annual Ranking',
+                'trust_team_title': '数据驱动，精准护航', 'trust_team_desc': '我们经验丰富的**专业分析师团队**，利用先进数据模型，提供精准的投资见解，助您在瞬息万变的市场中把握致胜先机。', 'trust_reg_title': '权威认可，信赖基石', 'trust_reg_desc': '黄河控股荣获**香港黄金交易所 (CGSE)** 认可，行员编号 196。<br>这代表我们在资金安全和透明度方面，符合业界最严格的标准。', 'btn_select_gr': '选择黄河，开启成功',
+                'timeline_start': '创始起步', 'timeline_start_desc': '从一个愿景开始，我们建立了黄河控股的核心价值观', 'timeline_growth': '稳健成长', 'timeline_growth_desc': '不断扩展市场份额，赢得客户信赖', 'timeline_award': '荣誉加冕', 'timeline_award_desc': '多次获得行业大奖，成为业界标杆', 'timeline_global': '全球视野', 'timeline_global_desc': '拓展国际市场，服务全球投资者', 'cta_title': '极速开启您的黄金时代', 'cta_desc': '只需简单几步，立即获取全球最优势的交易资源，与 100,000+ 投资者共同见证财富增长。', 'cta_stats': '已有超过 100,000+ 投资人选择黄河控股', 'cta_stat_1': '闪电成交', 'cta_stat_2': '高倍杠杆', 'cta_stat_3': '权威监管',
+                'ft_company_name': '黄河控股 Golden River Holding Group Limited', 'ft_service_online': '在线客服：点击开启', 'ft_links': '快速链接', 'ft_about': '关于我们', 'ft_fund_safe': '资金安全', 'ft_reg': '监管信息', 'ft_reg_desc_1': 'Golden River Holding Group Limited 注册于科摩罗联盟，编号 16202。<br>A类注册人 Category A Registrant A-B-25-11-10049', 'ft_reg_desc_2': '地址：Boulevard de Coalancanthe, Mutsamudu, Anjouan, Union of Comoros.', 'ft_risk': '高风险投资警告：差价合约（CFD）属于复杂的金融产品，其使用杠杆交易的属性导致本金快速亏损的可能性较高。请在入市前先了解差价合约的产品原理并考虑是否能够承受此风险。所有金融衍生产品工具的过往价格与表现并不担保或代表未来走势。', 'ft_restriction': '限制地区： Golden River Holding Group Limited 不向某些国家的居民提供服务，包括但不限于台湾、加拿大、日本、朝鲜、伊朗和美利坚合众国（美国）。',
+            },
+            'en': {
+                // 手機版語言選單翻譯 (英文)
+                'm_lang_select': 'Language Selection',
+                'btn_close_menu': 'Close Menu', // 新增
+                'lang_tw': 'Traditional Chinese', 'lang_cn': 'Simplified Chinese', 'lang_en': 'English',
+
+				'btn_submit': 'Open Account Now', 'ft_logo_text': 'Golden River', 'page_title': 'Golden River | Your Gateway to Wealth',
+                'nav_home': 'Home', 'nav_rules': 'Trading Rules', 'nav_accounts': 'Account Types', 'nav_download': 'Download Center', 'nav_advantages': 'Our Advantages', 'nav_info': 'News Center', 'btn_open_account': 'Open Live Account', 'nav_logo_text': 'Golden River',
+                'hero_badge': 'NO.196 Licensed Member of CGSE', 'hero_title': 'Invest Smart <br> <span class="text-gradient">Global Wealth</span>', 'hero_desc': 'Regulated and professional, enjoy smart investment. Millisecond execution, seize every profit opportunity. Lower spread than the market and zero commission.', 'btn_start_now': 'Start Trading <i class="fas fa-arrow-right ml-2"></i>', 'btn_dl_app': 'Get App', 'app_assets': 'Total Assets (USD)', 'app_trade_btn': 'Trade Now',
+                'eco_title': 'Financial Ecosystem', 'eco_1': 'Global Market', 'eco_1_d': 'Connect to top international liquidity providers', 'eco_2': 'Fast Engine', 'eco_2_d': 'Patented matching technology, millisecond execution', 'eco_3': 'Encrypted Security', 'eco_3_d': 'Bank-grade data protection standards', 'expert_title': 'Master the Market <br> <span class="text-gradient">Without Expertise</span>', 'expert_desc': 'Dozens of professional analysts provide online trading advice. Easily invest and profit smartly with Golden River.', 'btn_get_analysis': 'Get Professional Analysis', 'feat_expert': 'Expert Team', 'feat_signal': 'Precise Signals', 'enc_title': 'Exclusive Encryption Technology', 'enc_desc': 'We use the most advanced technology to ensure your data is protected during transmission and storage. Our encryption security technology will be your most trusted guardian, providing you with a safe and secure operating experience.', 'btn_safe_trade': 'Experience Safe Trading Now', 'guard_title': 'Your Wealth Guardian', 'guard_sub': 'Your fund safety is our top priority. We constantly update and improve our security system to ensure your funds are always safe and reliable.', 'sec_1': 'Encryption', 'sec_1_d': 'Worry-free Security', 'sec_2': 'Data Protection', 'sec_2_d': 'Private Transmission', 'sec_3': 'Digital Assets', 'sec_3_d': 'Steady Growth', 'sec_4': 'Fund Safety', 'sec_4_d': 'Solid as Rock', 'new_ad_t1': 'Market Insight', 'new_ad_d1': 'Precise Trend Analysis', 'new_ad_t2': 'Stable Growth', 'new_ad_d2': 'Efficient Investment Channel', 'new_ad_sub': 'Precious Metals CFDs', 'new_ad_txt': 'Precious Metal CFDs are contracts for difference based on physical commodities, mainly including London Gold and Silver. Investors can buy or sell commodity contracts through margin to earn price differences. Golden River operation team has 10 years of experience, analysts provide professional market advice and excellent competitive spreads.', 'slogan_1': 'WITH PROFESSIONAL INSIGHT', 'slogan_2': 'NAVIGATE MARKET VOLATILITY', 'btn_join_us': 'Join Us',
+                'rules_title': 'Trading Rules', 'rules_sub': 'Fair & Transparent · Gold (LLG) & Silver (LLS) · Global Real-time Quote', 'cfd_ad_title': 'Precious Metal CFDs', 'cfd_desc': 'Golden River operation team has 10 years of experience. Analysts provide professional market advice and excellent competitive spreads.', 'tbl_title': 'Contract Specifications', 'tbl_hint': 'Swipe left to see more', 'tbl_item': 'Item', 'tbl_llg': 'London Gold (LLG)', 'tbl_lls': 'London Silver (LLS)', 'calc_title': 'Profit Formula', 'calc_formula': 'P/L = (Close - Open) x Contract Size x Lots ± Swap – Commission', 'calc_note': 'Note: No swap for intraday trading. Actual swap rates are subject to the platform.', 'ex_title': 'Example Analysis', 'ex_desc': 'Assume you think LLG will rise from 1740 to 1745. You buy 1 lot.', 'profit': 'Profit', 'calc_desc': 'Master the wealth code, calculate every penny of profit.', 'level_title': 'Your Wealth Journey', 'trade_24': '24/7 Trading', 'trade_24_d': 'T+0 two-way trading, trade anytime', 'lev_desc': 'Small capital, big energy. Use high leverage to amplify your returns, flexibly allocating assets.',
+                'rule_leverage_title': 'Leverage Advantage', 'rule_gr_platform': 'Golden River', 'rule_retail_bank': 'Retail Bank', 'rule_trading_hours_title': 'Trading Hours', 'rule_summer_time': 'Summer Time:', 'rule_winter_time': 'Winter Time:', 'rule_median_spread': 'Median Spread', 'rule_mini': 'Mini', 'rule_standard': 'Standard', 'rule_gold': 'Gold', 'rule_diamond': 'Diamond', 'rule_swap_title': 'Swap/Overnight Interest', 'rule_buy': 'Buy', 'rule_sell': 'Sell', 'rule_summer_time_content': 'Mon 06:00 - Sat 04:45', 'rule_winter_time_content': 'Mon 07:00 - Sat 05:45', 'rule_llg_mini_spread': '0.5 (Fixed)', 'rule_lls_mini_spread': '0.04 (Fixed)', 'rule_llg_std_spread': '0.5 (Fixed)', 'rule_lls_std_spread': '0.04 (Fixed)', 'rule_llg_gold_spread': '0.5 (Fixed)', 'rule_lls_gold_spread': '0.04 (Fixed)', 'rule_llg_dia_spread': '0.5 (Fixed)', 'rule_lls_dia_spread': '0.04 (Fixed)', 'rule_leverage_tier': 'Tier / Leverage', 'rule_llg_tier': '5.01-60 Lots: 125x ($1000)<br>60.01-180 Lots: 50x ($2500)<br>180.01+ Lots: 30x ($4000)', 'rule_lls_tier': '0.01-2 Lots: 500x ($200)<br>2.01-5 Lots: 245x ($500)', 'rule_unit': 'Contract Unit', 'rule_llg_unit': '100 oz', 'rule_lls_unit': '5000 oz', 'rule_single_limit': 'Single Order Limit', 'rule_llg_limit': '0.01-30 Lots', 'rule_lls_limit': '0.01-30 Lots', 'rule_liquidation': 'Forced Liquidation', 'rule_holiday_liq': 'Holiday Forced Liquidation', 'rule_hedge_margin': 'Hedge Margin', 'rule_break_time': 'Recess Time', 'rule_break_time_content': 'Summer: Tue-Fri 05:00-06:00<br>Winter: Tue-Fri 06:00-07:00', 'rule_margin_raise_time': 'Margin Raise Before Close', 'rule_margin_raise_time_content': 'Summer: Sat 04:15<br>Winter: Sat 05:15',
+                'acc_title': 'Account Tiers', 'acc_sub': 'Tailored benefits and welfare · For every stage', 'acc_mini': 'Mini', 'acc_mini_d': 'For Beginners', 'acc_std': 'Standard', 'acc_std_d': 'Low Risk', 'acc_gold': 'Gold', 'acc_gold_d': 'Frequent Traders', 'acc_dia': 'Diamond', 'acc_dia_d': 'High Capital', 'acc_min_dep': 'Min Deposit', 'btn_select': 'Select', 'btn_upgrade_now': 'Upgrade Now', 'btn_vip': 'Get Diamond', 'acc_feat_1': 'Free Expert Guidance', 'acc_feat_2': 'Min Order 0.01 Lots', 'acc_feat_3': 'Fixed 1:50 Leverage', 'acc_feat_4': 'All Mini Features', 'acc_feat_5': 'Investment Advice', 'acc_feat_6': 'Cost Down 45%', 'acc_feat_7': 'Spread Rebate', 'acc_feat_8': 'Personalized Service', 'acc_feat_9': 'Cost Down 70%', 'acc_feat_10': 'Best Rebate Rate', 'acc_feat_11': 'Dedicated Manager', 'acc_low_spread': 'Low Spread', 'acc_high_rebate': 'High Rebate', 'acc_exclusive_manager': 'Exclusive Manager', 'rule_up_title': 'Upgrade Rules', 'up_path_1': 'Mini ➜ Standard', 'up_desc_1': 'Users can upgrade based on their own risk management.', 'up_path_2': 'Standard ➜ Gold', 'up_path_3': 'Gold ➜ Diamond', 'user_new': 'New User:', 'gold_req_new': 'First Dep $3,000 OR Net Dep $3,000/mo.', 'gold_req_old': 'Net Dep $3,000/mo OR 100 Lots/mo.', 'user_old': 'Existing User:', 'dia_req_new': 'First Dep $15,000 OR Net Dep $15,000/mo.', 'dia_req_old': 'Net Dep $15,000/mo OR 200 Lots/mo.', 'rule_down_title': 'Downgrade Rules', 'validity_text': 'Level Validity: Adjusted monthly. Downgrades occur if inactive & below net value.', 'down_rule_1': '<strong>Diamond ➜ Gold:</strong> Inactive AND Net Value < $3,000.', 'down_rule_2': '<strong>Gold ➜ Standard:</strong> Inactive AND Net Value < $15,000.', 'def_title': 'Definitions', 'def_1': '• <strong>Active:</strong> Any deposit, open, or close record in the month.', 'def_2': '• <strong>Lot Definition:</strong> Open 1 lot + Close 1 lot = 1 lot.', 'def_3': '• <strong>Exception:</strong> No downgrade if there are pending orders or open positions.',
+                'dl_title': 'Download Center', 'dl_sub': 'Seize opportunities anytime, anywhere · IOS / Android', 'step_1': 'Download', 'step_1_d': 'Innovative smart app.', 'step_2': 'Register', 'step_2_d': 'Open account in 30s.', 'step_3': 'Activate', 'step_3_d': 'Low threshold start.', 'step_4': 'Execute', 'step_4_d': '0.06s fast execution.', 'app_feat_title': 'One-stop Investment Experience', 'app_feat_desc': 'Gain unique investment perspectives and deep insights.<br><br>✔ 68 Technical Indicators<br>✔ Precise Stop Loss/Take Profit<br>✔ 0.06s Execution', 'comp_title': 'Registration Benefits Comparison', 'comp_1': 'VIP Treatment', 'comp_2': 'Process', 'fast': 'Fast', 'slow': 'Complex', 'comp_3': 'Privileges', 'gr_platform': 'Golden River', 'other_platform': 'Other Platforms',
+                'adv_title': 'Timing Aligned. Prosperity Shining', 'adv_sub': 'Our goal is your success, your satisfaction is our greatest motivation.', 'adv_fund': 'Fast Fund Operation', 'adv_fund_d': 'Supports various payment methods, 2-hour withdrawal; segregated fund custody for compliance.', 'adv_enc': 'Information Encryption Protection', 'adv_enc_d': 'Uses SSL encryption technology and strict security systems; unauthorized access to user info is prevented.', 'adv_reg': 'Adherence to Strict Regulation', 'adv_reg_d': 'We are strictly regulated to protect your interests, CGSE member No. 196.', 'award_title': 'Awards and Honors', 'award_desc': 'Golden River operation team has won numerous awards and achieved legends.', 'award_1': 'Best Trading Platform', 'award_2': 'Most Influential Brand in Asia', 'award_3': 'Excellent Customer Service Award', 'award_4': 'Fastest Execution Speed Award', 'adv_future': 'STEPPING TOWARDS A BRILLIANT CHAPTER', 'adv_future_d': 'Golden River is a powerful partner and your important step towards success. We will create a stable, secure, and efficient environment for you, providing comprehensive support and service to help you realize your dreams of wealth growth.',
+                'info_title': 'News Center', 'info_sub': 'Grasp the latest market dynamics and announcements.', 'news_1_t': 'Market News Insights', 'news_1_d': 'Quickly obtaining market news and timely insights into market trends are keys to success. Golden River App provides the latest news updates.', 'news_2_t': 'System Maintenance Announcement', 'news_2_d': 'To provide a better trading experience, we will perform system maintenance this weekend. Trading may be affected during this period, please make fund arrangements in advance.',
+                'reg_title': 'Open Live Account', 'reg_sub': 'Connect with the world and unlock a new digital experience.', 'reg_feat_1': 'Fast Opening', 'reg_feat_1_d': 'Complete registration in 30 seconds, start trading immediately', 'reg_feat_2': 'Fund Safety', 'reg_feat_2_d': 'Segregated custody, strict regulation guarantee', 'btn_back_home': 'Back to Home', 'lbl_phone': 'Phone Number', 'lbl_pwd': 'Login Password', 'agree_text': 'I have read and agree to the', 'agree_link': 'User Agreement, Disclaimer & Privacy Policy', 'reg_large_title_hardcode': 'Open Your <br> <span class="text-green-400 text-gradient">Wealth Path</span>',
+                'adv_focus_main_title': 'Precision in Action', 'adv_focus_main_sub': 'Millisecond decisions protect your wealth.', 'adv_speed_title': 'Ultimate Efficiency & Smart Tools', 'adv_control_title': 'Smart Risk Control & Market Insight', 'adv_open_title': 'Fast Opening (30s)', 'adv_flash_title': 'Flash Execution (0.06s)', 'adv_indicators_title': 'Pro Indicators (68+)', 'adv_open_slogan': 'Simplified process, instant access to your dedicated investment account.', 'adv_flash_slogan': 'Patented matching technology offers millisecond response speed, keeping you ahead of market volatility.', 'adv_indicators_slogan': 'Over 68 built-in technical indicators for in-depth analysis and complex strategy optimization.', 'focus_profit_title': 'Lock In Profit & Precise Risk Control', 'focus_profit_slogan': 'Use **precise Take Profit & Stop Loss orders** to minimize potential risk and protect your earnings from unexpected volatility.', 'focus_news_title': 'Market News Insights', 'focus_news_slogan': 'Real-time news and analysis provide critical insights, helping you make informed investment decisions in complex markets.', 'btn_join_us_focus': 'Join Now to Start Smart Trading',
+                'home_award_title': 'Top Broker · Global Awards', 'home_award_sub': 'Professional strength is highly recognized in the industry, making us your trustworthy trading partner.', 'award_home_1': 'Best Precious Metals Investment Award', 'award_home_1_source': '2020 FOLLOWME Annual Selection', 'award_home_2': 'Most Trusted Precious Metals Investment Company', 'award_home_2_source': '2019 Annual Finance Ranking', 'award_home_3': 'Best Finance & Investor Relations Gold Award', 'award_home_3_source': 'Golden Bridge Business Innovation Activity, USA', 'award_home_4': 'Most Marketing Influential Gold Company', 'award_home_4_source': '17th China Financial Summit', 'award_home_5': 'Best Mobile Investment Institution', 'award_home_5_source': '2019 FX168 Broker Annual Ranking',
+                'trust_team_title': 'Data-Driven, Precise Protection', 'trust_team_desc': 'Our experienced team of **professional analysts** utilizes advanced data models to provide precise investment insights, helping you seize the winning edge in volatile markets.', 'trust_reg_title': 'Authoritative Approval, Foundation of Trust', 'trust_reg_desc': 'Golden River is **licensed by the Chinese Gold and Silver Exchange Society (CGSE)**, Member No. 196. This means our fund safety and transparency meet the industry\'s strictest standards.', 'btn_select_gr': 'Choose Golden River, Start Success',
+                'timeline_start': 'Founding Start', 'timeline_start_desc': 'Started with a vision, we established the core values of Golden River', 'timeline_growth': 'Steady Growth', 'timeline_growth_desc': 'Continuously expanding market share and earning customer trust', 'timeline_award': 'Award Honors', 'timeline_award_desc': 'Multiple industry awards, becoming an industry benchmark', 'timeline_global': 'Global Vision', 'timeline_global_desc': 'Expanding international markets, serving global investors', 'cta_title': 'Rapidly Start Your Golden Era', 'cta_desc': 'In just a few simple steps, gain access to the world\'s most advantageous trading resources and witness wealth growth with over 100,000+ investors.', 'cta_stats': 'Over 100,000+ investors have chosen Golden River', 'cta_stat_1': 'Flash Execution', 'cta_stat_2': 'High Leverage', 'cta_stat_3': 'Regulated License',
+                'ft_company_name': 'Golden River Holding Group Limited', 'ft_service_online': 'Online Service: Click to Open', 'ft_links': 'Quick Links', 'ft_about': 'About Us', 'ft_fund_safe': 'Fund Safety', 'ft_reg': 'Regulatory Info', 'ft_reg_desc_1': 'Golden River Holding Group Limited is registered in Union of Comoros, number 16202.<br>Category A Registrant A-B-25-11-10049', 'ft_reg_desc_2': 'Address: Boulevard de Coalancanthe, Mutsamudu, Anjouan, Union of Comoros.', 'ft_risk': 'High-Risk Investment Warning: Contracts for Difference (CFDs) are complex financial products, and their leveraged trading nature leads to a high possibility of rapid capital loss. Please understand the product principle of CFDs and consider whether you can afford this risk before entering the market. The past prices and performance of all financial derivatives do not guarantee or represent future trends.', 'ft_restriction': 'Restricted Regions: Golden River Holding Group Limited does not provide services to residents of certain countries, including but not limited to Taiwan, Canada, Japan, North Korea, Iran, and the United States of America (USA).',
+            }
+        };
+        
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('hamburger-icon');
+            if (menu.classList.contains('mobile-menu-open')) {
+                menu.classList.remove('mobile-menu-open');
+                icon.classList.remove('fa-times', 'menu-close-icon');
+                icon.classList.add('fa-bars');
+                document.body.style.overflow = ''; 
+            } else {
+                menu.classList.add('mobile-menu-open');
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times', 'menu-close-icon');
+                document.body.style.overflow = 'hidden'; 
+            }
+        }
+
+        function setLang(lang) {
+            const data = langData[lang];
+            const label = lang === 'tw' ? '繁體中文' : (lang === 'cn' ? '简体中文' : 'English');
+            document.getElementById('current-lang-label').innerText = label;
+            document.querySelectorAll('[data-key]').forEach(el => {
+                const key = el.getAttribute('data-key');
+                if (data[key] !== undefined) el.innerHTML = data[key];
+            });
+            if (data['page_title']) document.title = data['page_title'];
+            const navContent = document.getElementById('nav-content');
+            if (window.innerWidth < 640 && lang === 'en') { navContent.classList.add('mobile-en-compact'); } else { navContent.classList.remove('mobile-en-compact'); }
+            document.querySelectorAll('.award-title-text').forEach(el => {
+                 el.classList.add('award-title-text-fixed');
+                 el.classList.remove('text-lg');
+                 el.classList.add('text-base');
+            });
+            
+            // --- 漢堡選單 (Side Menu) 高亮邏輯 ---
+            ['tw', 'cn', 'en'].forEach(l => {
+                const btn = document.getElementById('lang-btn-mobile-' + l);
+                if(btn) {
+                    btn.classList.remove('text-green-400', 'bg-green-500/20');
+                    btn.classList.add('text-slate-400');
+                }
+            });
+            const activeBtn = document.getElementById('lang-btn-mobile-' + lang);
+            if(activeBtn) {
+                activeBtn.classList.remove('text-slate-400');
+                activeBtn.classList.add('text-green-400', 'bg-green-500/20');
+            }
+            
+            // --- 頂部導航欄 (Navbar Mobile Icon) 高亮邏輯 ---
+            // 這裡也需要更新，因為手機版頂部還有一個地球圖標
+            ['tw', 'cn', 'en'].forEach(l => {
+                const navBtn = document.getElementById('nav-m-lang-' + l);
+                if(navBtn) {
+                    navBtn.classList.remove('text-green-400', 'bg-green-500/20');
+                    navBtn.classList.add('text-slate-400');
+                }
+            });
+            const activeNavBtn = document.getElementById('nav-m-lang-' + lang);
+            if(activeNavBtn) {
+                activeNavBtn.classList.remove('text-slate-400');
+                activeNavBtn.classList.add('text-green-400', 'bg-green-500/20');
+            }
+
+            // --- 自動關閉選單邏輯 ---
+            // 1. 如果是漢堡選單開啟狀態，關閉它
+            if (window.innerWidth < 1024 && document.getElementById('mobile-menu').classList.contains('mobile-menu-open')) {
+                 toggleMobileMenu();
+            }
+            
+            // 2. 對於頂部導航欄的地球圖標，由於它是 CSS :hover 觸發的，點擊後我們可以透過移除 focus 或暫時隱藏來模擬關閉
+            // 最簡單的方法是讓 body 點擊一下 (觸發失去焦點)
+            if (window.innerWidth < 640) {
+                 document.body.click(); 
+            }
+        }
+        
+        window.addEventListener('DOMContentLoaded', () => {
+             setLang('tw'); 
+             window.addEventListener('resize', () => {
+                 const currentLabel = document.getElementById('current-lang-label').innerText;
+                 let currentLang;
+                 if (currentLabel === 'English') { currentLang = 'en'; } else if (currentLabel === '简体中文') { currentLang = 'cn'; } else { currentLang = 'tw'; }
+                 setLang(currentLang);
+             });
+        });
+
+        const canvas = document.getElementById('main-canvas');
+        const ctx = canvas.getContext('2d');
+        let width, height, particles = [];
+        function resize() { width = canvas.width = window.innerWidth; height = canvas.height = window.innerHeight; }
+        window.addEventListener('resize', resize); resize();
+        class Particle {
+            constructor() { this.x = Math.random() * width; this.y = Math.random() * height; this.vx = (Math.random()-0.5)*0.5; this.vy = (Math.random()-0.5)*0.5; this.size = Math.random()*2; }
+            update() { this.x+=this.vx; this.y+=this.vy; if(this.x<0)this.x=width; if(this.x>width)this.x=0; if(this.y<0)this.y=height; if(this.y>height)this.y=0; }
+            draw() { ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI*2); ctx.fillStyle = 'rgba(52,211,153,0.3)'; ctx.fill(); }
+        }
+        for(let i=0; i<60; i++) particles.push(new Particle());
+        function animate() { ctx.clearRect(0,0,width,height); particles.forEach(p=>{p.update();p.draw();}); requestAnimationFrame(animate); }
+        animate();
+
+        function initStarfield() {
+            const cvs = document.getElementById('register-canvas');
+            const c = cvs.getContext('2d');
+            let w = cvs.width = window.innerWidth;
+            let h = cvs.height = window.innerHeight;
+            const isMobile = window.innerWidth < 768; 
+            const starCount = isMobile ? 800 : 200; 
+            const starSpeed = isMobile ? 0.2 : 10; 
+            let stars = [];
+            for(let i=0; i<starCount; i++) stars.push({x:Math.random()*w-w/2, y:Math.random()*h-h/2, z:Math.random()*w});
+            function drawStars() {
+                if(document.getElementById('view-register').classList.contains('active') === false) { return; }
+                c.fillStyle = "black"; c.fillRect(0,0,w,h); c.fillStyle = "white";
+                stars.forEach(s => {
+                    s.z -= starSpeed; if(s.z<=0) s.z=w;
+                    let x = (s.x/s.z)*100 + w/2; let y = (s.y/s.z)*100 + h/2; let size = (1-s.z/w)*3;
+                    if(x>0&&x<w&&y>0&&y<h) { c.beginPath(); c.arc(x,y,size,0,Math.PI*2); c.fill(); }
+                });
+                requestAnimationFrame(drawStars);
+            }
+            drawStars();
+        }
+
+        let webAnimationId = null; 
+        function initGoldWeb() {
+            const container = document.getElementById('gold-canvas-container');
+            if(!container) return; 
+            if (webAnimationId) { cancelAnimationFrame(webAnimationId); webAnimationId = null; }
+            container.innerHTML = '';
+            const canvas = document.createElement('canvas');
+            canvas.style.position = 'absolute'; canvas.style.top = '0'; canvas.style.left = '0'; canvas.style.width = '100%'; canvas.style.height = '100%';
+            container.appendChild(canvas);
+            const ctx = canvas.getContext('2d');
+            let w, h, particles = [];
+            function resizeWeb() { w = canvas.width = container.offsetWidth; h = canvas.height = container.offsetHeight; initParticles(); }
+            function initParticles() {
+                particles = [];
+                const numParticles = Math.min(Math.floor((w * h) / 15000), 50); 
+                for(let i=0; i<numParticles; i++) { particles.push({ x: Math.random() * w, y: Math.random() * h, vx: (Math.random()-0.5) * 0.3, vy: (Math.random()-0.5) * 0.3, size: Math.random() * 1.5 + 1.5 }); }
+            }
+            resizeWeb();
+            function drawWeb() {
+                if(document.getElementById('view-accounts').classList.contains('active') === false) { webAnimationId = null; return; }
+                ctx.clearRect(0, 0, w, h);
+                particles.forEach((p, i) => {
+                    p.x += p.vx; p.y += p.vy;
+                    if(p.x < 0 || p.x > w) p.vx *= -1; if(p.y < 0 || p.y > h) p.vy *= -1;
+                    ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI*2);
+                    ctx.fillStyle = '#facc15'; ctx.shadowColor = '#facc15'; ctx.shadowBlur = p.size * 3; ctx.fill(); ctx.shadowBlur = 0;
+                    for(let j = i + 1; j < particles.length; j++) {
+                        let p2 = particles[j];
+                        let dx = p.x - p2.x; let dy = p.y - p2.y; let dist = Math.sqrt(dx*dx + dy*dy);
+                        if(dist < 180) { ctx.beginPath(); ctx.strokeStyle = `rgba(252, 211, 77, ${1 - dist/180})`; ctx.lineWidth = 0.5; ctx.moveTo(p.x, p.y); ctx.lineTo(p2.x, p2.y); ctx.stroke(); }
+                    }
+                });
+                webAnimationId = requestAnimationFrame(drawWeb);
+            }
+            if(!window.goldWebListenerAdded) { window.addEventListener('resize', resizeWeb); window.goldWebListenerAdded = true; }
+            drawWeb();
+        }
+
+        // --- 全新 Option: 黃金數據半球 (Golden Data Hemisphere) ---
+        let downloadAnimId = null;
+        function initHemisphere() {
+            const canvas = document.getElementById('download-canvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            let w, h;
+            
+            // 參數
+            let sphereRadius; 
+            const dotsCount = 400; 
+            let dots = [];
+            let rotationSpeed = 0.002;
+            let angleY = 0; 
+            let angleX = 0.3; 
+
+            function resizeDownload() {
+                w = canvas.width = canvas.parentElement.offsetWidth;
+                h = canvas.height = canvas.parentElement.offsetHeight;
+                
+                // --- 手機與電腦分開調整大小 ---
+                const mobileScale = 0.65;   // 手機版倍率 (稍微大一點填滿)
+                const desktopScale = 0.9;   // 電腦版倍率
+                
+                const currentScale = window.innerWidth < 1024 ? mobileScale : desktopScale;
+                sphereRadius = Math.min(w, h) * currentScale;
+                
+                initDots();
+            }
+
+            function initDots() {
+                dots = [];
+                // 費波那契球體分佈 (Fibonacci Sphere)
+                const phi = Math.PI * (3 - Math.sqrt(5)); 
+
+                for (let i = 0; i < dotsCount; i++) {
+                    const y = 1 - (i / (dotsCount - 1)); // 範圍 1 -> 0 (只取上半球)
+                    const radiusAtY = Math.sqrt(1 - y * y); 
+                    const theta = phi * i; 
+                    const x = Math.cos(theta) * radiusAtY;
+                    const z = Math.sin(theta) * radiusAtY;
+
+                    dots.push({
+                        baseX: x * sphereRadius,
+                        baseY: y * sphereRadius, 
+                        baseZ: z * sphereRadius
+                    });
+                }
+            }
+
+            function draw() {
+                if (document.getElementById('view-download').classList.contains('active') === false) {
+                    downloadAnimId = null;
+                    return;
+                }
+
+                ctx.clearRect(0, 0, w, h);
+                angleY += rotationSpeed;
+
+                const cx = w / 2;
+                const cy = h * 0.8; // 下移球心
+
+                const projectedDots = dots.map(dot => {
+                    let x1 = dot.baseX * Math.cos(angleY) - dot.baseZ * Math.sin(angleY);
+                    let z1 = dot.baseZ * Math.cos(angleY) + dot.baseX * Math.sin(angleY);
+                    let y2 = dot.baseY * Math.cos(angleX) - z1 * Math.sin(angleX);
+                    let z2 = z1 * Math.cos(angleX) + dot.baseY * Math.sin(angleX);
+
+                    const scale = 500 / (500 + z2); 
+                    const x2d = x1 * scale + cx;
+                    const y2d = -y2 * scale + cy; 
+                    const alpha = Math.max(0, scale - 0.4); 
+
+                    return { x: x2d, y: y2d, scale: scale, alpha: alpha, z: z2 };
+                });
+
+                ctx.lineWidth = 0.5;
+                for (let i = 0; i < projectedDots.length; i++) {
+                    const dot = projectedDots[i];
+                    if (dot.alpha <= 0.1) continue; 
+
+                    const neighbors = [1, 5, 8, 13, 21];
+                    neighbors.forEach(offset => {
+                        const neighborIndex = i + offset;
+                        if (neighborIndex < projectedDots.length) {
+                            const neighbor = projectedDots[neighborIndex];
+                            const dx = dot.x - neighbor.x;
+                            const dy = dot.y - neighbor.y;
+                            const dist = Math.sqrt(dx*dx + dy*dy);
+
+                            if (dist < 60) {
+                                ctx.beginPath();
+                                ctx.moveTo(dot.x, dot.y);
+                                ctx.lineTo(neighbor.x, neighbor.y);
+                                ctx.strokeStyle = `rgba(250, 204, 21, ${Math.min(dot.alpha, neighbor.alpha) * 0.3})`;
+                                ctx.stroke();
+                            }
+                        }
+                    });
+                }
+
+                projectedDots.forEach(dot => {
+                    if (dot.alpha <= 0) return;
+                    ctx.beginPath();
+                    ctx.arc(dot.x, dot.y, 1.5 * dot.scale, 0, Math.PI * 2);
+                    const isGold = (Math.floor(dot.x) + Math.floor(dot.y)) % 7 === 0;
+                    if (isGold) {
+                        ctx.fillStyle = `rgba(250, 204, 21, ${dot.alpha})`;
+                        ctx.shadowBlur = 8;
+                        ctx.shadowColor = `rgba(250, 204, 21, ${dot.alpha})`;
+                    } else {
+                        ctx.fillStyle = `rgba(74, 222, 128, ${dot.alpha * 0.8})`; 
+                        ctx.shadowBlur = 0;
+                    }
+                    ctx.fill();
+                    ctx.shadowBlur = 0;
+                });
+
+                downloadAnimId = requestAnimationFrame(draw);
+            }
+
+            resizeDownload();
+            if (!window.downloadListenerAdded) {
+                window.addEventListener('resize', resizeDownload);
+                window.downloadListenerAdded = true;
+            }
+            draw();
+        }
+
+        function initMeteors() {
+            const container = document.getElementById('stars-container');
+            if(container) {
+                container.innerHTML = '';
+                for(let i=0; i<20; i++) {
+                    let star = document.createElement('div');
+                    star.className = 'star';
+                    star.style.top = Math.random() * 100 + '%';
+                    star.style.left = Math.random() * 100 + '%';
+                    star.style.animationDelay = Math.random() * 5 + 's';
+                    star.style.animationDuration = Math.random() * 3 + 2 + 's';
+                    container.appendChild(star);
+                }
+            }
+        }
+
+        const track = document.getElementById('award-carousel-track');
+        const viewport = document.querySelector('.award-carousel-viewport');
+        const cards = document.querySelectorAll('.carousel-card-wrapper');
+        const originalCards = 5; 
+        let currentIndex = 0; let cardWidth = 0; let autoScrollTimer = null; let isIntersecting = false; 
+
+        function getCardWidth() { if (cards.length === 0) return 0; cardWidth = cards[0].offsetWidth; return cardWidth; }
+        function setIndex(index, useTransition = true) {
+            index = Math.max(0, index); currentIndex = index;
+            const currentCardWidth = getCardWidth(); if (currentCardWidth === 0) return;
+            let totalTranslate = -(currentIndex * currentCardWidth);
+            let centerOffsetIndex = window.innerWidth >= 1024 ? 2 : 0; 
+            let visualCenterCardIndex = (currentIndex + centerOffsetIndex);
+            cards.forEach(card => card.classList.remove('active'));
+            let originalIndex = visualCenterCardIndex % originalCards;
+            cards.forEach(card => {
+                const cardOriginalIndex = parseInt(card.getAttribute('data-index')) % originalCards;
+                if (cardOriginalIndex === originalIndex) { card.classList.add('active'); }
+            });
+            track.style.transition = useTransition ? 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)' : 'none';
+            track.style.transform = `translate3d(${totalTranslate}px, 0, 0)`;
+            if (currentIndex >= originalCards) { setTimeout(() => { currentIndex = currentIndex % originalCards; setIndex(currentIndex, false); }, 500); } 
+            else if (currentIndex < 0) { setTimeout(() => { currentIndex = originalCards + (currentIndex % originalCards); if (currentIndex === originalCards) currentIndex = 0; if (currentIndex === 0) currentIndex = originalCards - 1; setIndex(currentIndex, false); }, 500); }
+        }
+        function startAutoScroll() { if (autoScrollTimer) return; autoScrollTimer = setInterval(() => { if(isIntersecting) { currentIndex++; setIndex(currentIndex); } }, 3000); }
+        function stopAutoScroll() { if (autoScrollTimer) { clearInterval(autoScrollTimer); autoScrollTimer = null; } }
+        const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { isIntersecting = entry.isIntersecting; if (isIntersecting) { getCardWidth(); startAutoScroll(); } else { stopAutoScroll(); } }); }, { threshold: 0.2 }); 
+        if (viewport) observer.observe(viewport);
+        window.addEventListener('load', () => { getCardWidth(); setIndex(0, false); document.querySelectorAll('.award-title-text').forEach(el => { el.classList.add('award-title-text-fixed'); el.classList.remove('text-lg'); el.classList.add('text-base'); }); });
+        window.addEventListener('resize', () => { getCardWidth(); setIndex(currentIndex, false); });
+
+        function switchView(viewId) {
+            document.querySelectorAll('.view-section').forEach(el => { el.classList.remove('active'); el.style.display = 'none'; el.style.backgroundColor = ''; });
+            const target = document.getElementById('view-' + viewId);
+            if(target) { target.style.display = 'block'; void target.offsetWidth; target.classList.add('active'); window.scrollTo(0,0); setTimeout(() => AOS.refreshHard(), 100); }
+            const mainCanvas = document.getElementById('main-canvas'); const regCanvas = document.getElementById('register-canvas'); const navbar = document.getElementById('navbar'); const footer = document.querySelector('footer');
+            const barGreen = document.getElementById('bar-green'); const barGray = document.getElementById('bar-gray');
+            if(viewId === 'rules') { setTimeout(() => { if(barGreen) barGreen.style.width = '100%'; if(barGray) barGray.style.width = '10%'; }, 500); } else { if(barGreen) barGreen.style.width = '0%'; if(barGray) barGray.style.width = '0%'; }
+            if (webAnimationId) { cancelAnimationFrame(webAnimationId); webAnimationId = null; }
+            if (downloadAnimId) { cancelAnimationFrame(downloadAnimId); downloadAnimId = null; }
+
+            if(viewId === 'register') {
+                mainCanvas.style.display = 'none'; regCanvas.style.display = 'block'; regCanvas.style.zIndex = '0'; 
+                if (target) { target.style.backgroundColor = 'transparent'; } 
+                if (window.innerWidth < 1024) { navbar.style.display = 'flex'; target.style.paddingTop = ''; } else { navbar.style.display = 'none'; target.style.paddingTop = '0'; }
+                footer.style.display = 'none'; initStarfield(); stopAutoScroll(); 
+            } else {
+                mainCanvas.style.display = 'block'; regCanvas.style.display = 'none'; regCanvas.style.zIndex = '-1'; navbar.style.display = 'flex'; footer.style.display = 'block';
+                if(viewId === 'accounts') initGoldWeb();
+                if(viewId === 'download') initHemisphere(); // 啟動半球體特效
+                if(viewId === 'advantages') initMeteors();
+            }
+            if (viewId === 'home') { setTimeout(() => { getCardWidth(); setIndex(currentIndex, false); startAutoScroll(); }, 600); } else { stopAutoScroll(); }
+            document.querySelectorAll('.nav-link, .mobile-nav-link').forEach(btn => { if(btn.dataset.key === 'nav_' + viewId) btn.classList.add('text-green-400'); else btn.classList.remove('text-green-400'); });
+            if (window.innerWidth < 1024 && document.getElementById('mobile-menu').classList.contains('mobile-menu-open')) { toggleMobileMenu(); }
+        }
+
+        // --- 新增：守護者卡片輪播發光邏輯 ---
+        function initGuardianGlow() {
+            const cards = document.querySelectorAll('.guardian-card');
+            if (cards.length === 0) return;
+
+            let activeIndex = 0;
+            // 設定定時器，每 2000 毫秒 (2秒) 切換一次
+            setInterval(() => {
+                // 1. 先移除所有卡片的發光狀態
+                cards.forEach(card => {
+                    card.classList.remove('active-glow');
+                });
+
+                // 2. 只有當前頁面是 Home 時才執行發光 (避免在其他頁面浪費效能)
+                const homeView = document.getElementById('view-home');
+                if (homeView.style.display !== 'none') {
+                    // 3. 讓當前索引的卡片發光
+                    if(cards[activeIndex]) {
+                        cards[activeIndex].classList.add('active-glow');
+                    }
+
+                    // 4. 索引 +1，如果超過數量則歸零 (0 -> 1 -> 2 -> 3 -> 0)
+                    activeIndex = (activeIndex + 1) % cards.length;
+                }
+            }, 1000); 
+        }
+
+        // 啟動動畫
+        document.addEventListener('DOMContentLoaded', () => {
+            initGuardianGlow();
+        });
+    </script>
+</body>
+</html>
